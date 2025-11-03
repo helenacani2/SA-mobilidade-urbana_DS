@@ -63,28 +63,17 @@ $NumeroDeRotas = $resultado->num_rows;
     </ul>
 </nav>
 
-<body id="body" onload="ao_entrar(), tempo_estimado(), em_viagem()">
+<body id="body" onload="ao_entrar(), tempo_estimado(), em_viagem(), comeco()">
 
     <br>
 
     <div id="tudo">
 
-        
-
-
-
-
-
-
-
-
-
-
         <div id="mapaRota" style="position: relative;">
 
             <!-- <img id="imagem_rota" src="../midias/rota_1.png"> -->
 
-            <iframe src='mapa.php' style='border-radius:50px;width:100%;height:800px;' title='Iframe Example' id="MapaJanela"></iframe>
+            <br>
 
             <div id="legenda_rota_maior">
 
@@ -107,6 +96,8 @@ $NumeroDeRotas = $resultado->num_rows;
                 </div>
 
             </div>
+
+            <iframe src='mapa.php' style='border-radius:50px;width:100%;height:800px;' title='Iframe Example' id="MapaJanela"></iframe>
 
         </div>
 
@@ -162,6 +153,12 @@ $NumeroDeRotas = $resultado->num_rows;
 <script src="../javascript/teste.js?v=<?php echo time(); ?>"></script>
 
 <script>
+
+    function MandarHora() {
+
+        alert("Tetse");
+
+    }
     <?php
 
     $ContadorRotas = 1;
