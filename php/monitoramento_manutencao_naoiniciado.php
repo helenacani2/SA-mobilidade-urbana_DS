@@ -164,11 +164,12 @@ $routes = $resultado->FETCH_ALL(MYSQLI_ASSOC);
         </div>
     </div>
         </section>
-
+ <div></div>
 
  <section id="Fazendo">
     <div id="divbody">
         <div id="table4">
+            
             <?php
 
 $stmt->execute();
@@ -258,6 +259,7 @@ $routes = $resultado->FETCH_ALL(MYSQLI_ASSOC);
 
             }
             ?>
+            
         </div>
 
         <div id="table5">
@@ -312,6 +314,8 @@ $routes = $resultado->FETCH_ALL(MYSQLI_ASSOC);
         }
 
         ?>
+
+ 
 
         <br>
     </div>
