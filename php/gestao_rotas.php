@@ -69,17 +69,6 @@ $NumeroDeRotas = $resultado->num_rows;
 
     <div id="tudo">
 
-        
-
-
-
-
-
-
-
-
-
-
         <div id="mapaRota" style="position: relative;">
 
             <!-- <img id="imagem_rota" src="../midias/rota_1.png"> -->
