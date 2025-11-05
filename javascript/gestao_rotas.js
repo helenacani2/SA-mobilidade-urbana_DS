@@ -80,29 +80,73 @@ function rota_3() {
 
 }; */
 
+let HorasTempo = (localStorage.getItem("TempoHora"));
+let MinutosTempo = (localStorage.getItem("TempoMinuto"));
+
+let DiasTempo = 1;
+
+function comeco(){
+
+    HorasTempo = (localStorage.getItem("TempoHora"));
+    MinutosTempo = (localStorage.getItem("TempoMinuto"));
+
+    setInterval(comeco, 1000);
+
+}
+
+    
+
+
+
 function tempo_estimado() {
 
     const data = new Date();
 
+    //var d = data.getDay();
+
     var h = data.getHours();
 
-    var m = data.getMinutes() + 45;
+    var m = data.getMinutes();
 
-    if(m >= 60) {
+    DiasTempo = 1;
 
-        m-=60;      /* essa parte foi feito pelo João, créditos a ele */
+    MinutosChegada = m + MinutosTempo;
+
+    while(MinutosChegada >= 60) {
+
+        MinutosChegada = MinutosChegada - 60;   //essa parte foi parcialmente feita pelo João, créditos a ele
 
         h++;
 
-    };
+    }
 
-    h = hora_zero(h);
+    HorasChegada = h + HorasTempo;
 
-    m = minuto_zero(m);
+    while(HorasChegada >= 24) {
 
-    document.getElementById('hora').innerHTML = "Chega na estação às " + h + ":" + m;
+        HorasChegada = HorasChegada - 24;
 
-    setTimeout(tempo_estimado, 100);
+        //DiasTempo++
+
+    }
+
+    //DiaChegada = d;
+
+
+    //document.getElementById('hora').innerHTML = "Chega na estação em: Dia " + DiaChegada + ", às " + HorasChegada + ":" + MinutosChegada;
+
+    if(DiasTempo > 1) {
+
+        document.getElementById('hora').innerHTML = "Chega na estação às: " + HorasChegada + ":" + MinutosChegada + ", em " + DiasTempo + " dias.";
+
+    } else {
+
+        document.getElementById('hora').innerHTML = "Chega na estação às: " + HorasChegada + ":" + MinutosChegada + ", no dia de hoje.";
+
+    }
+
+
+    setTimeout(tempo_estimado, 1000);
 
 };
 

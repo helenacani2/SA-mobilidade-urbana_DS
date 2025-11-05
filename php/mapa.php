@@ -8,6 +8,7 @@ session_start();
 
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,48 +22,48 @@ session_start();
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
+
         body {
             background-color: #f0f2f5;
             color: #333;
             overflow: hidden;
         }
-        
+
         .container {
             display: flex;
             height: 100vh;
         }
-        
+
         .sidebar {
             width: 350px;
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             color: white;
             padding: 20px;
             overflow-y: auto;
-            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
         }
-        
+
         .main-content {
             flex: 1;
             display: flex;
             flex-direction: column;
         }
-        
+
         .toolbar {
             background: white;
             padding: 15px 25px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             z-index: 1000;
         }
-        
+
         #map {
             flex: 1;
             background-color: #e0e0e0;
         }
-        
+
         .btn {
             background-color: #3498db;
             color: white;
@@ -77,65 +78,68 @@ session_start();
             align-items: center;
             justify-content: center;
         }
-        
+
         .btn i {
             margin-right: 8px;
         }
-        
+
         .btn:hover {
             background-color: #2980b9;
             transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
-        
+
         .btn-danger {
             background-color: #e74c3c;
         }
-        
+
         .btn-danger:hover {
             background-color: #c0392b;
         }
-        
+
         .btn-success {
             background-color: #2ecc71;
         }
-        
+
         .btn-success:hover {
             background-color: #27ae60;
         }
-        
+
         .btn-warning {
             background-color: #f39c12;
         }
-        
+
         .btn-warning:hover {
             background-color: #d35400;
         }
-        
+
         .form-group {
             margin-bottom: 20px;
         }
-        
+
         label {
             display: block;
             margin-bottom: 8px;
             font-weight: bold;
         }
-        
-        input, select {
+
+        input,
+        select {
             width: 100%;
             padding: 10px;
             border-radius: 6px;
             border: 1px solid #ddd;
-            background-color: rgba(255,255,255,0.9);
+            background-color: rgba(255, 255, 255, 0.9);
         }
-        
-        .station-list, .route-list {
+
+        .station-list,
+        .route-list {
             margin-top: 25px;
         }
-        
-        .station-item, .route-item {
-            background-color: rgba(255,255,255,0.1);
+
+        .station-item,
+        .route-item {
+            background-color: rgba(255, 255, 255, 0.1);
             padding: 12px;
             margin-bottom: 10px;
             border-radius: 6px;
@@ -143,21 +147,22 @@ session_start();
             transition: all 0.3s;
             border-left: 4px solid #3498db;
         }
-        
-        .station-item:hover, .route-item:hover {
-            background-color: rgba(255,255,255,0.2);
+
+        .station-item:hover,
+        .route-item:hover {
+            background-color: rgba(255, 255, 255, 0.2);
             transform: translateX(5px);
         }
-        
+
         .station-item.active {
             background-color: rgba(52, 152, 219, 0.3);
             border-left: 4px solid #2ecc71;
         }
-        
+
         .route-item {
             border-left: 4px solid #f39c12;
         }
-        
+
         .modal {
             display: none;
             position: fixed;
@@ -170,16 +175,16 @@ session_start();
             justify-content: center;
             align-items: center;
         }
-        
+
         .modal-content {
             background-color: white;
             padding: 25px;
             border-radius: 10px;
             width: 450px;
             max-width: 90%;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
-        
+
         .modal-header {
             display: flex;
             justify-content: space-between;
@@ -188,17 +193,17 @@ session_start();
             padding-bottom: 15px;
             border-bottom: 1px solid #eee;
         }
-        
+
         .close {
             font-size: 24px;
             cursor: pointer;
             color: #7f8c8d;
         }
-        
+
         .close:hover {
             color: #34495e;
         }
-        
+
         .mode-indicator {
             background-color: #f39c12;
             padding: 8px 15px;
@@ -207,7 +212,7 @@ session_start();
             font-weight: bold;
             color: white;
         }
-        
+
         .route-creator {
             position: absolute;
             top: 80px;
@@ -215,83 +220,98 @@ session_start();
             background: white;
             padding: 15px;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             z-index: 1000;
             display: none;
         }
-        
+
         .instructions {
             background-color: #f9f9f9;
             padding: 15px;
             border-radius: 6px;
             margin-top: 15px;
             border-left: 4px solid #3498db;
-            color:#333;
+            color: #333;
         }
-        
+
         .section-title {
             font-size: 18px;
             margin-bottom: 15px;
             padding-bottom: 10px;
-            border-bottom: 1px solid rgba(255,255,255,0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         }
-        
+
         .status-bar {
             background-color: #2c3e50;
             color: white;
             padding: 10px 20px;
             font-size: 14px;
         }
-        
+
         .station-marker {
             background-color: #e74c3c;
             border: 3px solid white;
             border-radius: 50%;
             width: 20px;
             height: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
         }
-        
+
         .temp-marker {
             background-color: #3498db;
             border: 3px solid white;
             border-radius: 50%;
             width: 18px;
             height: 18px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
             animation: pulse 1.5s infinite;
         }
-        
+
         @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
         }
-        
+
         .logo {
             display: flex;
             align-items: center;
             margin-bottom: 20px;
         }
-        
+
         .logo-icon {
             font-size: 24px;
             margin-right: 10px;
         }
-        
+
         .control-group {
             display: flex;
             flex-wrap: wrap;
             margin-bottom: 15px;
         }
-        
+
         .control-group .btn {
             flex: 1;
             min-width: 120px;
         }
+
+        .invisivel {
+
+            display: none;
+
+        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
+
 <body>
     <div class="container">
         <div class="sidebar">
@@ -299,17 +319,17 @@ session_start();
                 <div class="logo-icon"><i class="fas fa-train"></i></div>
                 <h1>Rotas Ferroviárias</h1>
             </div>
-            
+
             <div class="control-group">
                 <button id="btn-add-station" class="btn"><i class="fas fa-plus-circle"></i> Estação</button>
                 <button id="btn-start-route" class="btn btn-warning"><i class="fas fa-route"></i> Nova Rota</button>
             </div>
-            
+
             <div class="control-group">
                 <button id="btn-edit-mode" class="btn"><i class="fas fa-edit"></i> Editar</button>
                 <button id="btn-save" class="btn btn-success"><i class="fas fa-save"></i> Salvar</button>
             </div>
-            
+
             <div class="instructions">
                 <p><strong>Como criar uma rota:</strong></p>
                 <ol>
@@ -318,18 +338,18 @@ session_start();
                     <li>Clique em "Finalizar Rota" quando terminar</li>
                 </ol>
             </div>
-            
+
             <div class="station-list">
                 <h3 class="section-title"><i class="fas fa-map-marker-alt"></i> Estações</h3>
                 <div id="stations-container"></div>
             </div>
-            
+
             <div class="route-list">
                 <h3 class="section-title"><i class="fas fa-train"></i> Rotas</h3>
                 <div id="routes-container"></div>
             </div>
         </div>
-        
+
         <div class="main-content">
             <div class="toolbar">
                 <h2>Mapa Ferroviário do Brasil</h2>
@@ -343,7 +363,7 @@ session_start();
             </div>
         </div>
     </div>
-    
+
     <!-- Modal para adicionar/editar estação -->
     <div id="station-modal" class="modal">
         <div class="modal-content">
@@ -376,7 +396,7 @@ session_start();
             </form>
         </div>
     </div>
-    
+
     <!-- Painel de criação de rotas -->
     <div id="route-creator" class="route-creator">
         <h3><i class="fas fa-route"></i> Criando Nova Rota</h3>
@@ -406,25 +426,56 @@ session_start();
         let creatingRoute = false;
         let currentRoute = [];
         let currentRouteLine = null;
-        
+        let MaiorID = 1;
+
+        function MandarHora(RotaClicada) {
+
+            for (let i = 1; i <= MaiorID; i++) {
+
+                if (("HoraTempo" + i) === ("HoraTempo" + RotaClicada)) {
+
+                    if (document.getElementById("HoraTempo" + i) !== null) {
+
+                        Hora = document.getElementById("HoraTempo" + i).innerHTML
+
+                        localStorage.setItem("TempoHora", Hora);
+
+                    }
+
+                    if (document.getElementById("MinutoTempo" + i) !== null) {
+
+                        Minuto = document.getElementById("MinutoTempo" + i).innerHTML
+
+                        localStorage.setItem("TempoMinuto", Minuto);
+
+                    }
+
+                }
+
+
+
+            }
+
+        }
+
         // Inicialização do mapa
         function initMap() {
             // Coordenadas do centro do Brasil
             const centerLat = -14.2350;
             const centerLng = -51.9253;
-            
+
             // Criar o mapa
             map = L.map('map').setView([centerLat, centerLng], 5);
-            
+
             // Adicionar camada do mapa
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(map);
-            
+
             // Carregar dados do servidor
             loadStations();
             loadRoutes();
-            
+
             // Evento de clique no mapa
             map.on('click', function(e) {
                 if (editMode && !tempMarker && !creatingRoute) {
@@ -432,7 +483,7 @@ session_start();
                 }
             });
         }
-        
+
         // Carregar estações do servidor
         function loadStations() {
             fetch('api.php?action=get_stations')
@@ -452,7 +503,7 @@ session_start();
                     updateStatus("Erro ao carregar estações");
                 });
         }
-        
+
         // Carregar rotas do servidor
         function loadRoutes() {
             fetch('api.php?action=get_routes')
@@ -472,7 +523,7 @@ session_start();
                     updateStatus("Erro ao carregar rotas");
                 });
         }
-        
+
         // Criar estação temporária no mapa
         function createTempStation(latlng) {
             tempMarker = L.marker(latlng, {
@@ -483,25 +534,25 @@ session_start();
                     iconSize: [24, 24]
                 })
             }).addTo(map);
-            
+
             // Preencher coordenadas no formulário
             document.getElementById('station-lat').value = latlng.lat.toFixed(6);
             document.getElementById('station-lng').value = latlng.lng.toFixed(6);
-            
+
             // Abrir modal para adicionar estação
             openStationModal();
         }
-        
+
         // Renderizar estações no mapa e na lista
         function renderStations() {
             // Limpar marcadores existentes
             stationMarkers.forEach(marker => map.removeLayer(marker));
             stationMarkers = [];
-            
+
             // Limpar lista de estações
             const container = document.getElementById('stations-container');
             container.innerHTML = '';
-            
+
             // Adicionar cada estação
             stations.forEach(station => {
                 // Criar marcador no mapa
@@ -513,7 +564,7 @@ session_start();
                         iconSize: [26, 26]
                     })
                 }).addTo(map);
-                
+
                 // Adicionar popup com informações
                 marker.bindPopup(`
                     <div>
@@ -522,7 +573,7 @@ session_start();
                         <button onclick="editStation(${station.id})" class="btn" style="margin-top: 10px;">Editar</button>
                     </div>
                 `);
-                
+
                 // Evento de arrastar (apenas no modo edição)
                 if (editMode) {
                     marker.on('dragend', function(e) {
@@ -531,7 +582,7 @@ session_start();
                         updateStationPosition(station.id, newLat, newLng);
                     });
                 }
-                
+
                 // Evento de clique
                 marker.on('click', function() {
                     if (creatingRoute) {
@@ -543,9 +594,9 @@ session_start();
                         marker.openPopup();
                     }
                 });
-                
+
                 stationMarkers.push(marker);
-                
+
                 // Adicionar à lista lateral
                 const stationItem = document.createElement('div');
                 stationItem.className = 'station-item';
@@ -554,7 +605,7 @@ session_start();
                     <div style="font-size: 12px; margin-top: 5px;">${station.endereco || ''}</div>
                 `;
                 stationItem.dataset.id = station.id;
-                
+
                 stationItem.addEventListener('click', function() {
                     if (creatingRoute) {
                         addStationToRoute(station);
@@ -565,21 +616,21 @@ session_start();
                         marker.openPopup();
                     }
                 });
-                
+
                 container.appendChild(stationItem);
             });
         }
-        
+
         // Renderizar rotas no mapa
         function renderRoutes() {
             // Limpar rotas existentes
             routeLines.forEach(line => map.removeLayer(line));
             routeLines = [];
-            
+
             // Limpar lista de rotas
             const container = document.getElementById('routes-container');
             container.innerHTML = '';
-            
+
             // Adicionar cada rota
             routes.forEach(route => {
                 // Obter coordenadas das estações da rota
@@ -587,7 +638,7 @@ session_start();
                 route.estacoes.forEach(estacao => {
                     coordinates.push([estacao.latitude, estacao.longitude]);
                 });
-                
+
                 if (coordinates.length > 1) {
                     // Criar linha da rota com estilo de trilho
                     const line = L.polyline(coordinates, {
@@ -596,14 +647,14 @@ session_start();
                         opacity: 0.8,
                         dashArray: '10, 10'
                     }).addTo(map);
-                    
+
                     // Linha de sombra para efeito de trilho
                     const shadowLine = L.polyline(coordinates, {
                         color: '#e74c3c',
                         weight: 8,
                         opacity: 0.3
                     }).addTo(map);
-                    
+
                     // Adicionar popup com informações
                     line.bindPopup(`
                         <div>
@@ -614,14 +665,16 @@ session_start();
                             <button onclick="deleteRoute(${route.id})" class="btn btn-danger" style="margin-top: 10px;">Excluir Rota</button>
                         </div>
                     `);
-                    
+
                     routeLines.push(line);
                     routeLines.push(shadowLine);
-                    
+
                     // Adicionar à lista lateral
                     const routeItem = document.createElement('div');
                     routeItem.className = 'route-item';
+                    RotaClicada = route.id;
                     routeItem.innerHTML = `
+                        <div onclick = 'MandarHora(${RotaClicada})'>
                         <strong>${route.nome}</strong>
                         <div style="font-size: 12px; margin-top: 5px;">
                             Distância: ${route.distancia_km} km | 
@@ -630,26 +683,40 @@ session_start();
                         <div style="font-size: 11px; margin-top: 3px;">
                             ${route.estacoes.length} estações
                         </div>
+
+                        <div class="invisivel" id="Tempo${route.id}">${Math.floor(route.tempo_estimado_min / 60)}.${route.tempo_estimado_min % 60}</div>
+                        <h1 class="invisivel">A</h1>
+                        <div class="invisivel" id="HoraTempo${route.id}">${Math.floor(route.tempo_estimado_min / 60)}</div>
+                        <div class="invisivel" id="MinutoTempo${route.id}">${route.tempo_estimado_min % 60}</div>
+
+                        </div>
                     `;
-                    
+
+                    if (route.id > MaiorID) {
+
+                        MaiorID = route.id;
+
+                    }
+
+
                     routeItem.addEventListener('click', function() {
                         if (coordinates.length > 0) {
                             map.fitBounds(coordinates);
                         }
                     });
-                    
+
                     container.appendChild(routeItem);
                 }
             });
         }
-        
+
         // Alternar modo de edição
         function toggleEditMode() {
             editMode = !editMode;
-            
+
             const indicator = document.getElementById('mode-indicator');
             const btn = document.getElementById('btn-edit-mode');
-            
+
             if (editMode) {
                 indicator.textContent = 'Modo Edição';
                 indicator.style.backgroundColor = '#e74c3c';
@@ -661,98 +728,98 @@ session_start();
                 btn.innerHTML = '<i class="fas fa-edit"></i> Editar';
                 updateStatus("Modo visualização ativado");
             }
-            
+
             renderStations();
         }
-        
+
         // Iniciar criação de rota
         function startRouteCreation() {
             creatingRoute = true;
             currentRoute = [];
-            
+
             document.getElementById('route-creator').style.display = 'block';
             updateStatus("Criando nova rota - Clique nas estações para adicioná-las à rota");
             map.getContainer().style.cursor = 'crosshair';
         }
-        
+
         // Finalizar criação de rota
         function finishRouteCreation() {
             const routeName = document.getElementById('route-name').value || `Rota ${routes.length + 1}`;
-            
+
             if (currentRoute.length < 2) {
                 alert('Uma rota precisa ter pelo menos duas estações');
                 return;
             }
-            
+
             // Preparar dados para envio
             const data = {
                 nome: routeName,
                 estacoes: JSON.stringify(currentRoute.map(station => station.id))
             };
-            
+
             // Enviar para o servidor
             fetch('api.php?action=save_route', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data)
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Erro na resposta do servidor');
-                }
-                return response.json();
-            })
-            .then(data => {
-                if (data.success) {
-                    cancelRouteCreation();
-                    loadRoutes();
-                    updateStatus(`Rota "${routeName}" criada com sucesso`);
-                } else {
-                    alert('Erro ao salvar rota: ' + data.message);
-                }
-            })
-            .catch(error => {
-                console.error('Erro:', error);
-                alert('Erro ao salvar rota: ' + error.message);
-            });
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Erro na resposta do servidor');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.success) {
+                        cancelRouteCreation();
+                        loadRoutes();
+                        updateStatus(`Rota "${routeName}" criada com sucesso`);
+                    } else {
+                        alert('Erro ao salvar rota: ' + data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro:', error);
+                    alert('Erro ao salvar rota: ' + error.message);
+                });
         }
-        
+
         // Cancelar criação de rota
         function cancelRouteCreation() {
             creatingRoute = false;
             currentRoute = [];
-            
+
             document.getElementById('route-creator').style.display = 'none';
             map.getContainer().style.cursor = '';
-            
+
             if (currentRouteLine) {
                 map.removeLayer(currentRouteLine);
                 currentRouteLine = null;
             }
-            
+
             updateStatus("Criação de rota cancelada");
         }
-        
+
         // Adicionar estação à rota em criação
         function addStationToRoute(station) {
             if (currentRoute.some(s => s.id === station.id)) {
                 updateStatus("Esta estação já está na rota");
                 return;
             }
-            
+
             currentRoute.push(station);
             updateRouteStationsList();
             updateTempRouteLine();
             updateStatus(`Estação "${station.nome}" adicionada à rota`);
         }
-        
+
         // Atualizar lista de estações na rota em criação
         function updateRouteStationsList() {
             const container = document.getElementById('route-stations-list');
             container.innerHTML = '';
-            
+
             currentRoute.forEach((station, index) => {
                 const stationItem = document.createElement('div');
                 stationItem.style.padding = '5px';
@@ -761,16 +828,16 @@ session_start();
                 container.appendChild(stationItem);
             });
         }
-        
+
         // Atualizar linha temporária da rota em criação
         function updateTempRouteLine() {
             if (currentRouteLine) {
                 map.removeLayer(currentRouteLine);
             }
-            
+
             if (currentRoute.length > 1) {
                 const coordinates = currentRoute.map(station => [station.latitude, station.longitude]);
-                
+
                 currentRouteLine = L.polyline(coordinates, {
                     color: '#3498db',
                     weight: 4,
@@ -779,15 +846,15 @@ session_start();
                 }).addTo(map);
             }
         }
-        
+
         // Selecionar estação
         function selectStation(stationId) {
             document.querySelectorAll('.station-item').forEach(item => {
                 item.classList.remove('active');
             });
-            
+
             selectedStation = stationId;
-            
+
             if (stationId) {
                 const stationItem = document.querySelector(`.station-item[data-id="${stationId}"]`);
                 if (stationItem) {
@@ -795,18 +862,18 @@ session_start();
                 }
             }
         }
-        
+
         // Abrir modal de estação
         function openStationModal(stationId = null) {
             const modal = document.getElementById('station-modal');
             const title = document.getElementById('modal-title');
             const form = document.getElementById('station-form');
             const deleteBtn = document.getElementById('btn-delete-station');
-            
+
             if (stationId) {
                 title.innerHTML = '<i class="fas fa-train-station"></i> Editar Estação';
                 const station = stations.find(s => s.id == stationId);
-                
+
                 if (station) {
                     document.getElementById('station-id').value = station.id;
                     document.getElementById('station-name').value = station.nome;
@@ -814,45 +881,45 @@ session_start();
                     document.getElementById('station-lat').value = station.latitude;
                     document.getElementById('station-lng').value = station.longitude;
                 }
-                
+
                 deleteBtn.style.display = 'inline-block';
             } else {
                 title.innerHTML = '<i class="fas fa-train-station"></i> Adicionar Estação';
                 form.reset();
                 document.getElementById('station-id').value = '';
                 deleteBtn.style.display = 'none';
-                
+
                 if (!document.getElementById('station-lat').value) {
                     const center = map.getCenter();
                     document.getElementById('station-lat').value = center.lat.toFixed(6);
                     document.getElementById('station-lng').value = center.lng.toFixed(6);
                 }
             }
-            
+
             modal.style.display = 'flex';
         }
-        
+
         // Editar estação
         function editStation(stationId) {
             openStationModal(stationId);
         }
-        
+
         // Fechar modais
         function closeModals() {
             document.querySelectorAll('.modal').forEach(modal => {
                 modal.style.display = 'none';
             });
-            
+
             if (tempMarker) {
                 map.removeLayer(tempMarker);
                 tempMarker = null;
             }
         }
-        
+
         // Salvar estação
         function saveStation(event) {
             event.preventDefault();
-            
+
             const data = {
                 id: document.getElementById('station-id').value,
                 nome: document.getElementById('station-name').value,
@@ -860,112 +927,112 @@ session_start();
                 latitude: document.getElementById('station-lat').value,
                 longitude: document.getElementById('station-lng').value
             };
-            
+
             fetch('api.php?action=save_station', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data)
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Erro na resposta do servidor');
-                }
-                return response.json();
-            })
-            .then(data => {
-                if (data.success) {
-                    closeModals();
-                    loadStations();
-                    updateStatus(`Estação "${document.getElementById('station-name').value}" salva com sucesso`);
-                } else {
-                    alert('Erro ao salvar estação: ' + data.message);
-                }
-            })
-            .catch(error => {
-                console.error('Erro:', error);
-                alert('Erro ao salvar estação: ' + error.message);
-            });
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Erro na resposta do servidor');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.success) {
+                        closeModals();
+                        loadStations();
+                        updateStatus(`Estação "${document.getElementById('station-name').value}" salva com sucesso`);
+                    } else {
+                        alert('Erro ao salvar estação: ' + data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro:', error);
+                    alert('Erro ao salvar estação: ' + error.message);
+                });
         }
-        
+
         // Excluir estação
         function deleteStation() {
             const stationId = document.getElementById('station-id').value;
-            
+
             if (!stationId || !confirm('Tem certeza que deseja excluir esta estação?')) {
                 return;
             }
-            
+
             const data = {
                 id: stationId
             };
-            
+
             fetch('api.php?action=delete_station', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data)
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Erro na resposta do servidor');
-                }
-                return response.json();
-            })
-            .then(data => {
-                if (data.success) {
-                    closeModals();
-                    loadStations();
-                    updateStatus("Estação excluída com sucesso");
-                } else {
-                    alert('Erro ao excluir estação: ' + data.message);
-                }
-            })
-            .catch(error => {
-                console.error('Erro:', error);
-                alert('Erro ao excluir estação: ' + error.message);
-            });
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Erro na resposta do servidor');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.success) {
+                        closeModals();
+                        loadStations();
+                        updateStatus("Estação excluída com sucesso");
+                    } else {
+                        alert('Erro ao excluir estação: ' + data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro:', error);
+                    alert('Erro ao excluir estação: ' + error.message);
+                });
         }
-        
+
         // Excluir rota
         function deleteRoute(routeId) {
             if (!confirm('Tem certeza que deseja excluir esta rota?')) {
                 return;
             }
-            
+
             const data = {
                 id: routeId
             };
-            
+
             fetch('api.php?action=delete_route', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data)
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Erro na resposta do servidor');
-                }
-                return response.json();
-            })
-            .then(data => {
-                if (data.success) {
-                    loadRoutes();
-                    updateStatus("Rota excluída com sucesso");
-                } else {
-                    alert('Erro ao excluir rota: ' + data.message);
-                }
-            })
-            .catch(error => {
-                console.error('Erro:', error);
-                alert('Erro ao excluir rota: ' + error.message);
-            });
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Erro na resposta do servidor');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.success) {
+                        loadRoutes();
+                        updateStatus("Rota excluída com sucesso");
+                    } else {
+                        alert('Erro ao excluir rota: ' + data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro:', error);
+                    alert('Erro ao excluir rota: ' + error.message);
+                });
         }
-        
+
         // Atualizar posição da estação
         function updateStationPosition(stationId, lat, lng) {
             const data = {
@@ -973,70 +1040,70 @@ session_start();
                 latitude: lat,
                 longitude: lng
             };
-            
+
             fetch('api.php?action=update_station_position', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data)
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Erro na resposta do servidor');
-                }
-                return response.json();
-            })
-            .then(data => {
-                if (data.success) {
-                    const station = stations.find(s => s.id == stationId);
-                    if (station) {
-                        updateStatus(`Posição da estação "${station.nome}" atualizada`);
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Erro na resposta do servidor');
                     }
-                }
-            })
-            .catch(error => {
-                console.error('Erro:', error);
-            });
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.success) {
+                        const station = stations.find(s => s.id == stationId);
+                        if (station) {
+                            updateStatus(`Posição da estação "${station.nome}" atualizada`);
+                        }
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro:', error);
+                });
         }
-        
+
         // Atualizar mensagem de status
         function updateStatus(message) {
             document.getElementById('status-message').textContent = message;
         }
-        
+
         // Event Listeners
         document.addEventListener('DOMContentLoaded', function() {
             // Inicializar mapa
             initMap();
-            
+
             // Botões
             document.getElementById('btn-add-station').addEventListener('click', function() {
                 openStationModal();
             });
-            
+
             document.getElementById('btn-start-route').addEventListener('click', startRouteCreation);
             document.getElementById('btn-finish-route').addEventListener('click', finishRouteCreation);
             document.getElementById('btn-cancel-route').addEventListener('click', cancelRouteCreation);
-            
+
             document.getElementById('btn-edit-mode').addEventListener('click', toggleEditMode);
-            
+
             document.getElementById('btn-save').addEventListener('click', function() {
                 // Recarregar dados do servidor
                 loadStations();
                 loadRoutes();
                 updateStatus("Dados atualizados do servidor");
             });
-            
+
             // Fechar modais
             document.querySelectorAll('.close').forEach(closeBtn => {
                 closeBtn.addEventListener('click', closeModals);
             });
-            
+
             // Formulários
             document.getElementById('station-form').addEventListener('submit', saveStation);
             document.getElementById('btn-delete-station').addEventListener('click', deleteStation);
-            
+
             // Fechar modal ao clicar fora
             window.addEventListener('click', function(event) {
                 if (event.target.classList.contains('modal')) {
@@ -1046,4 +1113,5 @@ session_start();
         });
     </script>
 </body>
+
 </html>

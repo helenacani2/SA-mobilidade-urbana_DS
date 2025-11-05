@@ -20,8 +20,8 @@ nav {
 
 .flexivel {
 
-    padding-top: 1rem; 
-    padding-block-end: 1rem; 
+    padding-top: 1rem;
+    padding-block-end: 1rem;
     display: flex;
     font-family: 'Times New Roman', Times, serif;
 
@@ -39,8 +39,10 @@ nav {
 
     margin: 20px auto;
     font-family: 'Times New Roman', Times, serif;
-    padding-top: 1rem; /*mexe na margem de  cima*/
-    padding-block-end: 1rem; /*mexe na margem de baixo*/
+    padding-top: 1rem;
+    /*mexe na margem de  cima*/
+    padding-block-end: 1rem;
+    /*mexe na margem de baixo*/
 }
 
 #rotas li {
@@ -138,12 +140,14 @@ nav {
 
     width: 100%;
 
-    z-index: 10;
+    z-index: 100;
     /* Garante que fique sobre a imagem */
 
     text-align: center;
 
-    margin-top: 1%;
+    margin-top: 4%;
+
+    position: relative;
 
 }
 
@@ -311,15 +315,15 @@ label.menu-icon {
 
 @media screen and (min-width: 1670px) {
 
-nav {
+    nav {
 
-    position: absolute;
+        position: absolute;
 
-    left: 200px;
+        left: 200px;
 
-    top: 0;
+        top: 0;
 
-    font-size: medium;
+        font-size: medium;
 
     }
 
@@ -509,6 +513,10 @@ nav {
 
 #MapaJanela {
 
-    /* margin-top: 15%; */
+    position: relative;
+
+    margin-top: -10%;
+
+    z-index: 99;
 
 }
