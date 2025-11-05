@@ -138,7 +138,7 @@ foreach ($registros_manutencao as $registro) {
                     <div id="table4">
                         <h2>Nome Trem</h2>
                         <?php
-                        // Consulta para registros 'Não Iniciado' (resolvido_manutencao = 'Não')
+                    
                         $stmt = $conn->prepare("SELECT m.id_manutencao, m.problema_manutencao, t.nome_trem FROM manutencao AS m INNER JOIN trens AS t ON trem_manutencao = id_trem WHERE m.resolvido_manutencao = 'Não'");
                         $stmt->execute();
                         $resultado = $stmt->get_result();
@@ -169,7 +169,6 @@ foreach ($registros_manutencao as $registro) {
                                 $id_manutencao = $trem['id_manutencao'];
                                 echo '<div class="registro-manutencao">';
                                 echo '<h3>' . $trem['problema_manutencao'] . '</h3>';
-                                // Adiciona o botão de ação "Marcar como Fazendo"
                                 echo "<input type='submit' value='Marcar como Fazendo' name='BotaoIniciar$id_manutencao' class='botao-iniciar'>";
                                 echo '</div>';
 
@@ -191,7 +190,6 @@ foreach ($registros_manutencao as $registro) {
                     <div id="table4">
                         <h2>Nome Trem</h2>
                         <?php
-                        // Consulta para registros 'Em Andamento'
                         $stmt = $conn->prepare("SELECT m.id_manutencao, m.problema_manutencao, t.nome_trem FROM manutencao AS m INNER JOIN trens AS t ON trem_manutencao = id_trem WHERE m.resolvido_manutencao = 'Andamento'");
                         $stmt->execute();
 
@@ -224,7 +222,6 @@ foreach ($registros_manutencao as $registro) {
                                 $id_manutencao = $trem['id_manutencao'];
                                 echo '<div class="registro-manutencao">';
                                 echo '<h3>' . $trem['problema_manutencao'] . '</h3>';
-                                // Adiciona o botão de ação "Marcar como Finalizado"
                                 echo "<input type='submit' value='Marcar como Finalizado' name='BotaoFinalizar$id_manutencao' class='botao-finalizar'>";
                                 echo '</div>';
 
@@ -245,7 +242,6 @@ foreach ($registros_manutencao as $registro) {
                 <div id="table4">
                     <h2>Nome Trem</h2>
                     <?php
-                    // Consulta para registros 'Finalizado' (resolvido_manutencao = 'Sim')
                     $stmt = $conn->prepare("SELECT m.problema_manutencao, t.nome_trem FROM manutencao AS m INNER JOIN trens AS t ON trem_manutencao = id_trem WHERE m.resolvido_manutencao = 'Sim'");
                     $stmt->execute();
 
@@ -272,13 +268,13 @@ foreach ($registros_manutencao as $registro) {
                 <div id="table5">
                     <h2>Problema</h2>
                     <?php
-                    // Usamos os dados já carregados de $manutencao_finalizada
+                    
                     if (!empty($manutencao_finalizada)) {
                         $contador = 0;
                         foreach ($manutencao_finalizada as $trem) {
                             echo '<div class="registro-manutencao">';
                             echo '<h3>' . $trem['problema_manutencao'] . '</h3>';
-                            // Não há botão de ação
+                            
                             echo '</div>';
                             if ($contador < $NumeroDeManutencao_Finalizada - 1) echo '<hr>';
                             $contador++;
