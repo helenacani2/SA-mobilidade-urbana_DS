@@ -7,7 +7,6 @@ const boton3 = document.getElementById("buton3");
 
 function andamento1() {
    
-
 }
 function andamento2() {
   
@@ -22,33 +21,25 @@ boton2.addEventListener("click", andamento2);
 boton1.addEventListener("click", andamento1);
 
 function Comeco() {
-
     document.getElementById("Finalizado").style.display = "none";
     document.getElementById("Fazendo").style.display = "none";
-    document.getElementById("NaoIniciado").style.display = "block";
-
+    document.getElementById("NaoIniciado").style.display = "block"; 
 }
 
 function NaoIniciado() {
-
     document.getElementById("Finalizado").style.display = "none";
     document.getElementById("Fazendo").style.display = "none";
     document.getElementById("NaoIniciado").style.display = "block";
-
 }
 
 function Fazendo() {
-
     document.getElementById("Finalizado").style.display = "none";
     document.getElementById("Fazendo").style.display = "block";
     document.getElementById("NaoIniciado").style.display = "none";
-
 }
 
 function Finalizado() {
-
     document.getElementById("Finalizado").style.display = "block";
     document.getElementById("Fazendo").style.display = "none";
     document.getElementById("NaoIniciado").style.display = "none";
-
 }
