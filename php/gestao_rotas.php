@@ -64,6 +64,7 @@ $NumeroDeRotas = $resultado->num_rows;
 </nav>
 
 <body id="body" onload="ao_entrar(), tempo_estimado(), em_viagem(), comeco()">
+    <!-- <body id="body" onload="ao_entrar(), em_viagem(), comeco()"> -->
 
     <br>
 
@@ -83,7 +84,7 @@ $NumeroDeRotas = $resultado->num_rows;
 
                     <div class="flexivel">
 
-                        <h3 id="rota_atual">Rota atual</h3>
+                        <h3 id="rota_atual">Rota atual:</h3>
 
                         <div class="flexivel">
 
@@ -97,7 +98,11 @@ $NumeroDeRotas = $resultado->num_rows;
 
             </div>
 
-            <iframe src='mapa.php' style='border-radius:50px;width:100%;height:800px;' title='Iframe Example' id="MapaJanela"></iframe>
+            <div onclick="tempo_estimado()">
+
+                <iframe src='mapa.php' style='border-radius:50px;width:100%;height:800px;' title='Mapa das rotas' id="MapaJanela"></iframe>
+
+            </div>
 
         </div>
 

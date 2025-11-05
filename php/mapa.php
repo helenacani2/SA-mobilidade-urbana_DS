@@ -428,7 +428,7 @@ session_start();
         let currentRouteLine = null;
         let MaiorID = 1;
 
-        function MandarHora(RotaClicada) {
+        function MandarHora(RotaClicada) { //Essa função coloca em local storage o tempo de viagem da rota, além do seu nome
 
             for (let i = 1; i <= MaiorID; i++) {
 
@@ -450,6 +450,9 @@ session_start();
 
                     }
 
+                    NomeRotaSelecionada = document.getElementById("NomeRota" + i). innerHTML;
+
+                    localStorage.setItem("NomeRotaSelecionada", NomeRotaSelecionada);
                 }
 
 
@@ -675,7 +678,7 @@ session_start();
                     RotaClicada = route.id;
                     routeItem.innerHTML = `
                         <div onclick = 'MandarHora(${RotaClicada})'>
-                        <strong>${route.nome}</strong>
+                        <strong id='NomeRota${RotaClicada}'>${route.nome}</strong>
                         <div style="font-size: 12px; margin-top: 5px;">
                             Distância: ${route.distancia_km} km | 
                             Tempo: ${Math.floor(route.tempo_estimado_min / 60)}h ${route.tempo_estimado_min % 60}min
