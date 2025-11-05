@@ -82,6 +82,7 @@ function rota_3() {
 
 let HorasTempo = (localStorage.getItem("TempoHora"));
 let MinutosTempo = (localStorage.getItem("TempoMinuto"));
+let NomeRotaSelecionada = (localStorage.getItem("NomeRotaSelecionada"));
 
 let DiasTempo = 1;
 
@@ -89,13 +90,18 @@ function comeco(){
 
     HorasTempo = (localStorage.getItem("TempoHora"));
     MinutosTempo = (localStorage.getItem("TempoMinuto"));
+    NomeRotaSelecionada = (localStorage.getItem("NomeRotaSelecionada"));
 
-    setInterval(comeco, 1000);
+    //setInterval(comeco, 1000);
 
 }
 
     
+function tempo_estimadoTESTE() {
 
+    alert("Mensagem ao clicar no mapa");
+
+}
 
 
 function tempo_estimado() {
@@ -130,6 +136,18 @@ function tempo_estimado() {
 
     }
 
+    if(MinutosChegada < 10) {
+
+        MinutosChegada = "0" + MinutosChegada;
+
+    }
+
+    if(HorasChegada < 10) {
+
+        HorasChegada = "0" + HorasChegada;
+
+    }
+
     //DiaChegada = d;
 
 
@@ -145,8 +163,10 @@ function tempo_estimado() {
 
     }
 
+    document.getElementById('rota_atual').innerHTML = "Rota atual: " + localStorage.getItem("NomeRotaSelecionada");
 
-    setTimeout(tempo_estimado, 1000);
+
+    //setTimeout(tempo_estimado, 1000);
 
 };
 
@@ -200,3 +220,9 @@ function estacao() {
     document.getElementById("em_viagem").innerHTML = "✰ Na estação";
 
 };
+
+MapaAtualiza = document.getElementById("MapaJanela");
+
+MapaAtualiza.addEventListener("mouseover", tempo_estimado);
+MapaAtualiza.addEventListener("mouseout", tempo_estimado);
+MapaAtualiza.addEventListener("mousemove", tempo_estimado);
