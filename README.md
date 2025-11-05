@@ -26,3 +26,4 @@ Pela demanda das diversas funcionalidades do site como monitoramente em tempo re
 
 Com tudo isso sendo necessário, tivemos um repositorio vasto e muito bem desenvolvido, onde cada um dos desenvolvedores ficou responsavel por uma parte expecifica do site, assim separando as tarefas e as reunindo para a criação do site como um todo, os documentos por questõa de boas praticas estão separados por tipo, e nomeados com suas respectivas funções.
 
+O projeto é público e não tem uma licensa, podendo assim ser alterado e usado legalmente por qualquer um.
