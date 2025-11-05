@@ -16,7 +16,6 @@ if (!isset($_SESSION["conectado"]) || $_SESSION["conectado"] != true) {
     header("Location: pagina_login.php");
 
     exit;
-    
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -30,11 +29,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header("Location: pagina_login.php");
     }
 }
+
+$query_ids = "SELECT id_manutencao, resolvido_manutencao FROM manutencao WHERE resolvido_manutencao IN ('Não', 'Andamento')";
+
+$stmt_ids = $conn->prepare($query_ids);
+$stmt_ids->execute();
+$resultado_ids = $stmt_ids->get_result();
+$registros_manutencao = $resultado_ids->fetch_all(MYSQLI_ASSOC);
+
+foreach ($registros_manutencao as $registro) {
+    $id_manutencao = $registro['id_manutencao'];
+    $status_atual = $registro['resolvido_manutencao'];
+
+    // de não para andamento
+    if ($status_atual === 'Não' && isset($_POST["BotaoIniciar$id_manutencao"])) {
+        $sql = "UPDATE manutencao SET resolvido_manutencao='Andamento' WHERE id_manutencao = $id_manutencao";
+        $conn->query($sql);
+        header("Location: " . $_SERVER['PHP_SELF']);
+        exit;
+    }
+
+    // de andamento para sim
+    if ($status_atual === 'Andamento' && isset($_POST["BotaoFinalizar$id_manutencao"])) {
+        $sql = "UPDATE manutencao SET resolvido_manutencao='Sim' WHERE id_manutencao = $id_manutencao";
+        $conn->query($sql);
+        header("Location: " . $_SERVER['PHP_SELF']);
+        exit;
+    }
+}
 ?>
 
 <!DOCTYPE html>
-
-
 
 <html lang="pt_BR">
 
@@ -54,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <h1>Manutenção</h1>
         <div id="butoesjuntos">
             <div id="buton1" onclick="NaoIniciado()">
-                 <button>Não Iniciado</button>
+                <button>Não Iniciado</button>
             </div>
             <div id="buton2" onclick="Fazendo()">
                 <button>Fazendo</button>
@@ -84,243 +109,223 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </ul>
     </nav>
 
-   <section id="trens">
+    <section id="trens">
 
-    <!-- Cabeçalho principal -->
-    <div id="table1">
-        <div id="table2">
-            <h3>Trens</h3>
-        </div>
-        <div id="table3">
-            <h3>Status dos trens</h3>
-        </div>
-    </div>
-
-    <!-- Cabeçalhos das colunas -->
-    <div id="divbody">
-        <div id="table4">
-            <h2>Nome Trem</h2>
-        </div>
-        <div id="table5">
-            <h2>Status</h2>
-        </div>
-    </div>
-    
-    <!-- Linhas de dados dos trens -->
-     <section id="NaoIniciado">
-    <div id="divbody">
-        <div id="table4">
-            <?php
-
-$stmt->execute();
-$resultado = $stmt->get_result();
-
-$routes = $resultado->FETCH_ALL(MYSQLI_ASSOC);
-
-                $stmt = $conn->prepare("SELECT m.problema_manutencao, t.nome_trem FROM manutencao AS m INNER JOIN trens AS t ON trem_manutencao = id_trem WHERE m.resolvido_manutencao = 'Não'");
-                $stmt->execute();
-
-                $resultado = $stmt->get_result();
-
-                $manutencao = $resultado->fetch_all(MYSQLI_ASSOC);
-
-                $NumeroDeManutencao = $resultado->num_rows;
-
-            if (!empty($manutencao)) {
-                
-                $contador = 1;
-
-                    foreach ($manutencao as $trem) {
-                    echo '<h3>' . $trem['nome_trem'] . '</h3>';
-                    if ($contador != $NumeroDeManutencao) echo '<hr>';
-                    $contador++;
-                }
-
-
-            }
-            ?>
+        <!-- Cabeçalho principal -->
+        <div id="table1">
+            <div id="table2">
+                <h3>Trens</h3>
+            </div>
+            <div id="table3">
+                <h3>Status dos trens</h3>
+            </div>
         </div>
 
-        <div id="table5">
-            <?php
-                $stmt = $conn->prepare("SELECT m.problema_manutencao, t.nome_trem FROM manutencao AS m INNER JOIN trens AS t ON trem_manutencao = id_trem WHERE m.resolvido_manutencao = 'Não'");
-                $stmt->execute();
-
-                $resultado = $stmt->get_result();
-
-                $manutencao = $resultado->fetch_all(MYSQLI_ASSOC);
-
-                $NumeroDeManutencao = $resultado->num_rows;
-
-            if (!empty($manutencao)) {
-                $contador = 1;
-                foreach ($manutencao as $trem) {
-                    echo '<h3>' . $trem['problema_manutencao'] . '</h3>';
-                    if ($contador != $NumeroDeManutencao) echo '<hr>';
-                    $contador++;
-                }
-            }
-            ?>
-        </div>
-    </div>
-        </section>
- <div></div>
-
- <section id="Fazendo">
-    <div id="divbody">
-        <div id="table4">
-            
-            <?php
-
-$stmt->execute();
-$resultado = $stmt->get_result();
-
-$routes = $resultado->FETCH_ALL(MYSQLI_ASSOC);
-
-                $stmt = $conn->prepare("SELECT m.problema_manutencao, t.nome_trem FROM manutencao AS m INNER JOIN trens AS t ON trem_manutencao = id_trem WHERE m.resolvido_manutencao = 'Andamento'");
-                $stmt->execute();
-
-                $resultado = $stmt->get_result();
-
-                $manutencao = $resultado->fetch_all(MYSQLI_ASSOC);
-
-                $NumeroDeManutencao = $resultado->num_rows;
-
-            if (!empty($manutencao)) {
-                
-                $contador = 1;
-
-                    foreach ($manutencao as $trem) {
-                    echo '<h3>' . $trem['nome_trem'] . '</h3>';
-                    if ($contador != $NumeroDeManutencao) echo '<hr>';
-                    $contador++;
-                }
-
-
-            }
-            ?>
+        <!-- Cabeçalhos das colunas -->
+        <div id="divbody">
+            <div id="table4">
+                <h2>Nome Trem</h2>
+            </div>
+            <div id="table5">
+                <h2>Status</h2>
+            </div>
         </div>
 
-    <div id="table5">
-            <?php
-               $stmt = $conn->prepare("SELECT * FROM manutencao WHERE resolvido_manutencao = 'Andamento'");
-                $stmt->execute();
+        <!-- Linhas de dados dos trens -->
+        <section id="NaoIniciado">
+            <form method="POST">
+                <div id="divbody">
+                    <div id="table4">
+                        <h2>Nome Trem</h2>
+                        <?php
+                        // Consulta para registros 'Não Iniciado' (resolvido_manutencao = 'Não')
+                        $stmt = $conn->prepare("SELECT m.id_manutencao, m.problema_manutencao, t.nome_trem FROM manutencao AS m INNER JOIN trens AS t ON trem_manutencao = id_trem WHERE m.resolvido_manutencao = 'Não'");
+                        $stmt->execute();
+                        $resultado = $stmt->get_result();
+                        $manutencao_nao_iniciada = $resultado->fetch_all(MYSQLI_ASSOC);
+                        $NumeroDeManutencao_NI = $resultado->num_rows;
 
-                $resultado = $stmt->get_result();
+                        if (!empty($manutencao_nao_iniciada)) {
+                            $contador = 0;
+                            foreach ($manutencao_nao_iniciada as $trem) {
+                                echo '<div class="registro-manutencao">';
+                                echo '<h3>' . $trem['nome_trem'] . '</h3>';
+                                echo '</div>';
+                                if ($contador < $NumeroDeManutencao_NI - 1) echo '<hr>';
+                                $contador++;
+                            }
+                        } else {
+                            echo '<div class="registro-manutencao"><h3>Nenhum registro pendente.</h3></div>';
+                        }
+                        ?>
+                    </div>
 
-                $manutencao = $resultado->fetch_all(MYSQLI_ASSOC);
+                    <div id="table5">
+                        <h2>Problema / Ação</h2>
+                        <?php
+                        if (!empty($manutencao_nao_iniciada)) {
+                            $contador = 0;
+                            foreach ($manutencao_nao_iniciada as $trem) {
+                                $id_manutencao = $trem['id_manutencao'];
+                                echo '<div class="registro-manutencao">';
+                                echo '<h3>' . $trem['problema_manutencao'] . '</h3>';
+                                // Adiciona o botão de ação "Marcar como Fazendo"
+                                echo "<input type='submit' value='Marcar como Fazendo' name='BotaoIniciar$id_manutencao' class='botao-iniciar'>";
+                                echo '</div>';
 
-                $NumeroDeManutencao = $resultado->num_rows;
-
-            if (!empty($manutencao)) {
-                $contador = 1;
-                foreach ($manutencao as $trem) {
-                    echo '<h3>' . $trem['problema_manutencao'] . '</h3>';
-                    if ($contador != $NumeroDeManutencao) echo '<hr>';
-                    $contador++;
-                }
-            }
-            ?>
-        </div>
-     </div>
+                                if ($contador < $NumeroDeManutencao_NI - 1) echo '<hr>';
+                                $contador++;
+                            }
+                        } else {
+                            echo '<div class="registro-manutencao"><h3>-</h3></div>';
+                        }
+                        ?>
+                    </div>
+                </div>
+            </form>
         </section>
 
+        <section id="Fazendo">
+            <form method="POST">
+                <div id="divbody">
+                    <div id="table4">
+                        <h2>Nome Trem</h2>
+                        <?php
+                        // Consulta para registros 'Em Andamento'
+                        $stmt = $conn->prepare("SELECT m.id_manutencao, m.problema_manutencao, t.nome_trem FROM manutencao AS m INNER JOIN trens AS t ON trem_manutencao = id_trem WHERE m.resolvido_manutencao = 'Andamento'");
+                        $stmt->execute();
 
+                        $resultado = $stmt->get_result();
+                        $manutencao_andamento = $resultado->fetch_all(MYSQLI_ASSOC);
 
+                        $NumeroDeManutencao_Andamento = $resultado->num_rows;
 
- <section id="Finalizado">
-    <div id="divbody">
-        <div id="table4">
-            <?php
-$stmt->execute();
-$resultado = $stmt->get_result();
+                        if (!empty($manutencao_andamento)) {
+                            $contador = 0;
+                            foreach ($manutencao_andamento as $trem) {
+                                echo '<div class="registro-manutencao">';
+                                echo '<h3>' . $trem['nome_trem'] . '</h3>';
+                                echo '</div>';
+                                if ($contador < $NumeroDeManutencao_Andamento - 1) echo '<hr>';
+                                $contador++;
+                            }
+                        } else {
+                            echo '<div class="registro-manutencao"><h3>Nenhum registro em andamento.</h3></div>';
+                        }
+                        ?>
+                    </div>
 
-$routes = $resultado->FETCH_ALL(MYSQLI_ASSOC);
+                    <div id="table5">
+                        <h2>Problema / Ação</h2>
+                        <?php
+                        if (!empty($manutencao_andamento)) {
+                            $contador = 0;
+                            foreach ($manutencao_andamento as $trem) {
+                                $id_manutencao = $trem['id_manutencao'];
+                                echo '<div class="registro-manutencao">';
+                                echo '<h3>' . $trem['problema_manutencao'] . '</h3>';
+                                // Adiciona o botão de ação "Marcar como Finalizado"
+                                echo "<input type='submit' value='Marcar como Finalizado' name='BotaoFinalizar$id_manutencao' class='botao-finalizar'>";
+                                echo '</div>';
 
-                $stmt = $conn->prepare("SELECT m.problema_manutencao, t.nome_trem FROM manutencao AS m INNER JOIN trens AS t ON trem_manutencao = id_trem WHERE m.resolvido_manutencao = 'Sim'");
-                $stmt->execute();
+                                if ($contador < $NumeroDeManutencao_Andamento - 1) echo '<hr>';
+                                $contador++;
+                            }
+                        } else {
+                            echo '<div class="registro-manutencao"><h3>-</h3></div>';
+                        }
+                        ?>
+                    </div>
+                </div>
+            </form>
+        </section>
 
-                $resultado = $stmt->get_result();
+        <section id="Finalizado">
+            <div id="divbody">
+                <div id="table4">
+                    <h2>Nome Trem</h2>
+                    <?php
+                    // Consulta para registros 'Finalizado' (resolvido_manutencao = 'Sim')
+                    $stmt = $conn->prepare("SELECT m.problema_manutencao, t.nome_trem FROM manutencao AS m INNER JOIN trens AS t ON trem_manutencao = id_trem WHERE m.resolvido_manutencao = 'Sim'");
+                    $stmt->execute();
 
-                $manutencao = $resultado->fetch_all(MYSQLI_ASSOC);
+                    $resultado = $stmt->get_result();
+                    $manutencao_finalizada = $resultado->fetch_all(MYSQLI_ASSOC);
 
-                $NumeroDeManutencao = $resultado->num_rows;
+                    $NumeroDeManutencao_Finalizada = $resultado->num_rows;
 
-            if (!empty($manutencao)) {
-                
-                $contador = 1;
+                    if (!empty($manutencao_finalizada)) {
+                        $contador = 0;
+                        foreach ($manutencao_finalizada as $trem) {
+                            echo '<div class="registro-manutencao">';
+                            echo '<h3>' . $trem['nome_trem'] . '</h3>';
+                            echo '</div>';
+                            if ($contador < $NumeroDeManutencao_Finalizada - 1) echo '<hr>';
+                            $contador++;
+                        }
+                    } else {
+                        echo '<div class="registro-manutencao"><h3>Nenhum registro finalizado.</h3></div>';
+                    }
+                    ?>
+                </div>
 
-                    foreach ($manutencao as $trem) {
-                    echo '<h3>' . $trem['nome_trem'] . '</h3>';
-                    if ($contador != $NumeroDeManutencao) echo '<hr>';
-                    $contador++;
-                }
-
-
-            }
-            ?>
-            
-        </div>
-
-        <div id="table5">
-            <?php
-               $stmt = $conn->prepare("SELECT * FROM manutencao WHERE resolvido_manutencao = 'Sim'");
-                $stmt->execute();
-
-                $resultado = $stmt->get_result();
-
-                $manutencao = $resultado->fetch_all(MYSQLI_ASSOC);
-
-                $NumeroDeManutencao = $resultado->num_rows;
-
-            if (!empty($manutencao)) {
-                $contador = 1;
-                foreach ($manutencao as $trem) {
-                    echo '<h3>' . $trem['problema_manutencao'] . '</h3>';
-                    if ($contador != $NumeroDeManutencao) echo '<hr>';
-                    $contador++;
-                }
-            }
-            ?>
-        </div>
-    </div>
+                <div id="table5">
+                    <h2>Problema</h2>
+                    <?php
+                    // Usamos os dados já carregados de $manutencao_finalizada
+                    if (!empty($manutencao_finalizada)) {
+                        $contador = 0;
+                        foreach ($manutencao_finalizada as $trem) {
+                            echo '<div class="registro-manutencao">';
+                            echo '<h3>' . $trem['problema_manutencao'] . '</h3>';
+                            // Não há botão de ação
+                            echo '</div>';
+                            if ($contador < $NumeroDeManutencao_Finalizada - 1) echo '<hr>';
+                            $contador++;
+                        }
+                    } else {
+                        echo '<div class="registro-manutencao"><h3>-</h3></div>';
+                    }
+                    ?>
+                </div>
+            </div>
         </section>
 
 
-    <div id="table1">
-        <div id="table2">
-            <h3>Notificações</h3>
-        </div> <!--Área das notificações-->
-        <div id="table3">
-            <h3>Em tempo real</h3>
+        <div id="table1">
+            <div id="table2">
+                <h3>Notificações</h3>
+            </div> <!--Área das notificações-->
+            <div id="table3">
+                <h3>Em tempo real</h3>
+            </div>
         </div>
-    </div>
-    <div id="white">
-        <br>
+        <div id="white">
+            <br>
 
-        <?php
+            <?php
 
-        if (!empty($notificacao)) {
+            if (!empty($notificacao)) {
 
-            foreach ($notificacao as $notificacoes) {
-                echo '<hr>';
-                echo '<h4>' . $notificacoes['titulo_notificacao'] . '</h4>';
-                echo '<div class="notificacao">';
-                echo '<h5>' . $notificacoes['mensagem_notificacao'] . '</h5>';
-                echo '<h6>' . $notificacoes['data_notificacao'] . '</h6><hr>';
-                echo '</div>';
-                echo '<hr>';
+                foreach ($notificacao as $notificacoes) {
+                    echo '<hr>';
+                    echo '<h4>' . $notificacoes['titulo_notificacao'] . '</h4>';
+                    echo '<div class="notificacao">';
+                    echo '<h5>' . $notificacoes['mensagem_notificacao'] . '</h5>';
+                    echo '<h6>' . $notificacoes['data_notificacao'] . '</h6><hr>';
+                    echo '</div>';
+                    /* echo '<hr>'; */
+                }
             }
-        }
 
-        ?>
+            ?>
 
- 
 
-        <br>
-    </div>
 
-</section>
+            <br>
+        </div>
+
+    </section>
 
     <section id="reportar_problema">
 
@@ -341,7 +346,7 @@ $routes = $resultado->FETCH_ALL(MYSQLI_ASSOC);
             <div class="white">
                 <img
                     src="https://images.icon-icons.com/1744/PNG/512/3643728-balloon-chat-conversation-speak-word_113413.png">
-                <a href="central_de_manutencao.php">Enviar Relatório</a>
+                <a href="central_de_manutencao.php">Central de Manutenção</a>
             </div>
 
         </div>
@@ -353,5 +358,3 @@ $routes = $resultado->FETCH_ALL(MYSQLI_ASSOC);
 <script src="../javascript/teste.js?v=<?php echo time(); ?>"></script>
 
 </html>
-
-//
