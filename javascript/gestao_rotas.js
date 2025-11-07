@@ -6,79 +6,10 @@ function ao_entrar() {
     
     document.getElementById("linha_nome").innerHTML = "📍 Linha Férrea da Paçoca";
 
-};
-
-/* function rota_1() {
-
-    var image = document.getElementById("imagem_rota");
-
-    var trem = document.getElementById("imagem_trem");
-
-    if (image.src != "../midias/rota_um.png") {
-
-        image.src = "../midias/rota_um.png";
-
-        trem.src = "../midias/trem1.png";
-        
-    };
-
-    document.getElementById("linha").innerHTML = "Norte-Sul - Linha Roxa";
-    
-    document.getElementById("preco_passagem").innerHTML = "9,99";
-    
-    document.getElementById("linha_nome").innerHTML = "📍 Linha Férrea da Paçoca";
-
-    em_viagem();
+    setInterval(tempo_estimado, 1000);
 
 };
 
-function rota_2() {
-
-    var image = document.getElementById("imagem_rota");
-
-    var trem = document.getElementById("imagem_trem");
-
-    if (image.src != "../midias/rota_dois.png") {
-
-        image.src = "../midias/rota_dois.png";
-
-        trem.src = "../midias/trem2.png";
-        
-    };
-
-    document.getElementById("linha").innerHTML = "Sul-Centro - Linha Ciano";
-    
-    document.getElementById("preco_passagem").innerHTML = "10,85";
-    
-    document.getElementById("linha_nome").innerHTML = "📍 Linha Férrea do Pastel";
-
-    em_viagem();
-
-};
-
-function rota_3() {
-
-    var image = document.getElementById("imagem_rota");
-
-    var trem = document.getElementById("imagem_trem");
-
-    if (image.src != "../midias/rota_tres.png") {
-
-        image.src = "../midias/rota_tres.png";
-
-        trem.src = "../midias/trem3.png";
-
-    };
-
-    document.getElementById("linha").innerHTML = "Cascata - Linha Azul";
-    
-    document.getElementById("preco_passagem").innerHTML = "9999999,99";
-    
-    document.getElementById("linha_nome").innerHTML = "📍 Linha Férrea da Coxinha";
-
-    em_viagem();
-
-}; */
 
 let HorasTempo = (localStorage.getItem("TempoHora"));
 let MinutosTempo = (localStorage.getItem("TempoMinuto"));
@@ -91,8 +22,6 @@ function comeco(){
     HorasTempo = (localStorage.getItem("TempoHora"));
     MinutosTempo = (localStorage.getItem("TempoMinuto"));
     NomeRotaSelecionada = (localStorage.getItem("NomeRotaSelecionada"));
-
-    //setInterval(comeco, 1000);
 
 }
 
@@ -108,13 +37,15 @@ function tempo_estimado() {
 
     const data = new Date();
 
-    //var d = data.getDay();
+    var h = parseInt(data.getHours());
 
-    var h = data.getHours();
+    var m = parseInt(data.getMinutes());
 
-    var m = data.getMinutes();
+    HorasTempo = (localStorage.getItem("TempoHora"));
+    MinutosTempo = (localStorage.getItem("TempoMinuto"));
+    NomeRotaSelecionada = (localStorage.getItem("NomeRotaSelecionada"));
 
-    DiasTempo = 1;
+    DiasTempo = 0;
 
     MinutosChegada = m + MinutosTempo;
 
@@ -132,7 +63,7 @@ function tempo_estimado() {
 
         HorasChegada = HorasChegada - 24;
 
-        //DiasTempo++
+        DiasTempo++
 
     }
 
@@ -153,7 +84,7 @@ function tempo_estimado() {
 
     //document.getElementById('hora').innerHTML = "Chega na estação em: Dia " + DiaChegada + ", às " + HorasChegada + ":" + MinutosChegada;
 
-    if(DiasTempo > 1) {
+    if(DiasTempo > 0) {
 
         document.getElementById('hora').innerHTML = "Chega na estação às: " + HorasChegada + ":" + MinutosChegada + ", em " + DiasTempo + " dias.";
 
@@ -164,9 +95,6 @@ function tempo_estimado() {
     }
 
     document.getElementById('rota_atual').innerHTML = "Rota atual: " + localStorage.getItem("NomeRotaSelecionada");
-
-
-    //setTimeout(tempo_estimado, 1000);
 
 };
 
@@ -225,4 +153,3 @@ MapaAtualiza = document.getElementById("MapaJanela");
 
 MapaAtualiza.addEventListener("mouseover", tempo_estimado);
 MapaAtualiza.addEventListener("mouseout", tempo_estimado);
-MapaAtualiza.addEventListener("mousemove", tempo_estimado);

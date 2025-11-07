@@ -63,7 +63,7 @@ $NumeroDeRotas = $resultado->num_rows;
     </ul>
 </nav>
 
-<body id="body" onload="ao_entrar(), tempo_estimado(), em_viagem(), comeco()">
+<body id="body" onload="ao_entrar(), em_viagem(), comeco()">
     <!-- <body id="body" onload="ao_entrar(), em_viagem(), comeco()"> -->
 
     <br>
