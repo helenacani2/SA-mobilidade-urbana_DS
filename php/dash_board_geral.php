@@ -89,6 +89,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <div id="table1">
 
+
+
         <div id="table2">
             <h3>Trens</h3>
         </div>
@@ -156,17 +158,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ?>
         </div>
     </div>
+
+    <?php
+
+        if ($_SESSION["cargo_funcionario"] == "Gerente") {
+            
+            echo '<br>';
+            echo '<a href="cadastrar_sensor.php" id="BotaoCadastrarSensor">ㅤCadastrar novo sensorㅤ</a>';
+
+        };
+
+        ?>
+
     <div id="table1">
+
         <div id="table2">
-            <h3>Horários</h3>
+            <h3>Sensores</h3>
         </div> <!--Segunda tabela-->
         <div id="table3">
-            <h3>Entrada e Saída de trens</h3>
+            <h3>Situação dos sensores</h3>
         </div>
     </div>
     <div id="divbody">
         <div id="table4">
-            <h2>Nome Trem</h2>
+            <h2>Nome Sensor</h2>
         </div>
         <div id="table5">
             <h2>Status</h2>
@@ -190,7 +205,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     }
 
                     $contador++;
-
                 }
             }
 

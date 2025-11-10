@@ -1,3 +1,11 @@
+<?php
+
+require_once "train_info_bd.php";
+
+session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -6,7 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../midias/logomenor.png" type="icon">
     <link rel="stylesheet" href="../css/cadastrar_trem.css?v=<?php echo time(); ?>">
-    <title>Cadastrar novo trem</title>
+    <title>Cadastrar novo sensor</title>
 </head>
 
 <nav class="menu-hamburguer">
@@ -27,25 +35,44 @@
 
 <body>
 
-    <form action="cadastrar_trem_aux.php" method="POST">
+    <form action="cadastrar_sensor_aux.php" method="POST">
 
-        <label for="TremNome" class="Legenda">Nome do Trem</label>
-        
-        <input type="text" id="TremNome" class="Texto" name="TremNome" required>
+        <label for="SensorNome" class="Legenda">Nome do Sensor</label>
 
-        <br>
-        <br>
-
-        <label for="TremData" class="Legenda">Data de Fabricação do Trem</label>
-        
-        <input type="date" id="TremData" class="Texto" name="TremData" required>
+        <input type="text" id="SensorNome" class="Texto" name="SensorNome" required>
 
         <br>
         <br>
 
-        <label for="TremFabricante" class="Legenda">Fabricante do Trem</label>
-        
-        <input type="text" id="TremFabricante" class="Texto" name="TremFabricante" required>
+        <label for="SensorTip" class="Legenda">Tipo do Sensor</label>
+
+        <input type="text" id="SensorTipo" class="Texto" name="SensorTip" required>
+
+        <br>
+        <br>
+
+        <label for="TremSensor" class="Legenda">Trem Associado</label>
+
+        <select id="TremSensor" class="Texto" name="TremSensor" required>
+
+            <?php
+
+            $sql = "SELECT * FROM trens";
+            $ResultadoTrens = $conn->query($sql);
+
+            if ($ResultadoTrens && $ResultadoTrens->num_rows >= 1) {
+
+                $Trens = $ResultadoTrens->fetch_all(MYSQLI_ASSOC);
+            }
+
+            foreach ($Trens as $linhaTrens) {
+
+                echo "<option>" . $linhaTrens['nome_trem'] . "</option>";
+            }
+
+            ?>
+
+        </select>
 
         <br>
         <br>

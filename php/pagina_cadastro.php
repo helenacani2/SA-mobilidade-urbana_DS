@@ -12,7 +12,6 @@ if (!isset($_SESSION["conectado"]) || $_SESSION["conectado"] != true) {
     header("Location: pagina_login.php");
 
     exit;
-   
 }
 
 if ($_SESSION["cargo_funcionario"] != "Gerente") {
@@ -20,7 +19,6 @@ if ($_SESSION["cargo_funcionario"] != "Gerente") {
     header("Location: pagina_login.php");
 
     exit;
-   
 }
 
 
@@ -48,8 +46,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
         $dados = $resultado->fetch_all(MYSQLI_ASSOC);
-
-
     }
 
 
@@ -79,8 +75,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $Invalido = true;
 
                 DadosDuplicado();
-
-
             }
 
 
@@ -90,13 +84,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
                 DadosDuplicado();
-
-
             }
-
-
         }
-       
     }
 
 
@@ -109,7 +98,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $Invalido = true;
 
         DadosInvalidos();
-
     }
 
 
@@ -118,10 +106,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $Invalido = true;
 
         DadosInvalidos();
-   
     }
 
-   
+
     //verificação de email:
 
     if (!filter_var($EmailC, FILTER_VALIDATE_EMAIL)) {
@@ -129,7 +116,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $Invalido = true;
 
         DadosInvalidos();
-
     }
 
 
@@ -139,7 +125,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // 1. extrai somente os números
     $CpfC = preg_replace('/[^0-9]/is', '', $CpfC);
-   
+
     // 2. verifica se tem 11 dígitos
     if (strlen($CpfC) != 11) {
 
@@ -158,38 +144,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $Invalido = true;
 
         DadosInvalidos();
-
     } else {
 
-      for ($t = 9; $t < 11; $t++) {
-        $soma = 0;
-        $multiplicador = $t + 1; // Começa em 10 (para o 1º dígito) e em 11 (para o 2º)
-       
-        // loop para somar os produtos dos 9 ou 10 primeiros dígitos
-        for ($i = 0; $i < $t; $i++) {
-            $soma += (int)$CpfC[$i] * ($multiplicador - $i);
+        for ($t = 9; $t < 11; $t++) {
+            $soma = 0;
+            $multiplicador = $t + 1; // Começa em 10 (para o 1º dígito) e em 11 (para o 2º)
+
+            // loop para somar os produtos dos 9 ou 10 primeiros dígitos
+            for ($i = 0; $i < $t; $i++) {
+                $soma += (int)$CpfC[$i] * ($multiplicador - $i);
+            }
+
+            // 4. calcula o dígito verificador ($d)
+            $resto = $soma % 11;
+            $digito_calculado = ($resto < 2) ? 0 : 11 - $resto;
+
+            // 5. compara o dígito calculado com o dígito do CPF informado
+            // O dígito verificador a ser comparado está na posição $t (9 ou 10)
+            if ((int)$CpfC[$t] != $digito_calculado) {
+
+                $Invalido = true;
+
+                DadosInvalidos();
+            }
         }
-       
-        // 4. calcula o dígito verificador ($d)
-        $resto = $soma % 11;
-        $digito_calculado = ($resto < 2) ? 0 : 11 - $resto;
-       
-        // 5. compara o dígito calculado com o dígito do CPF informado
-        // O dígito verificador a ser comparado está na posição $t (9 ou 10)
-        if ((int)$CpfC[$t] != $digito_calculado) {
-
-            $Invalido = true;
-
-            DadosInvalidos();
-
-        }
-
-    }  
-
     }
 
 
-    if($Invalido === false) {
+    if ($Invalido === false) {
 
         $_SESSION['NomeTran'] = $NomeC; //Permite transmitir valor de variáveis pra outra página.
         $_SESSION['EmailTran'] = $EmailC;
@@ -205,9 +187,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['CargoTran'] = $CargoC;
 
         header("Location: cadastro_aux.php");
-
     }
-
 }
 
 ?>
@@ -225,13 +205,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body onload="comeco()">
-<!-- <body> -->
+    <!-- <body> -->
 
-<?php
+    <?php
 
-function DadosDuplicado() {
+    function DadosDuplicado()
+    {
 
-    echo "
+        echo "
    
     <section>
 
@@ -246,13 +227,13 @@ function DadosDuplicado() {
     </section>
 
     ";
+    }
 
-}
 
+    function DadosInvalidos()
+    {
 
-function DadosInvalidos() {
-
-    echo "
+        echo "
 
         <div class='erro' onload='erro()'>
    
@@ -265,10 +246,9 @@ function DadosInvalidos() {
     </section>
 
     ";
+    }
 
-}
-
-?>
+    ?>
 
     <section id="login">
 
@@ -292,7 +272,7 @@ function DadosInvalidos() {
                 </div>
 
                 <div class="form-group">
-                    <label  for="senha">Senha*:</label>
+                    <label for="senha">Senha*:</label>
                     <br>
                     <input type="password" id="senha" name="senha_usuario" required>
 
@@ -347,9 +327,34 @@ function DadosInvalidos() {
                 </div>
 
                 <div class="form-group">
+
                     <label for="gestor">Gestor:*</label>
                     <br>
-                    <input type="text" id="gestor" name="Gestor" required>
+                    <!-- <input type="text" id="gestor" name="Gestor" required> -->
+
+                    <select id="gestor" name="Gestor" required>
+
+                        <?php
+
+                        $sql = "SELECT * FROM funcionario WHERE cargo_funcionario = 'Gerente'";
+                        $ResultadoGestores = $conn->query($sql);
+
+                        if ($ResultadoGestores && $ResultadoGestores->num_rows >= 1) {
+
+                            $Gestores = $ResultadoGestores->fetch_all(MYSQLI_ASSOC);
+
+                        }
+
+                        foreach ($Gestores as $linhaGestores) {
+
+                            echo "<option>" . $linhaGestores['nome_funcionario'] . "</option>";
+
+                        }
+
+                        ?>
+
+                    </select>
+
                 </div>
 
                 <div class="form-group">
