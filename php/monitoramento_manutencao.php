@@ -69,7 +69,6 @@ foreach ($registros_manutencao as $registro) {
     <link rel="shortcut icon" href="../midias/logomenor.png" type="icon"> <!-- Ícone da aba do navegador -->
     <title>Monitoramento Manutenção</title>
     <link rel="stylesheet" href="../css/monitoramento_manutencao.css?v=<?php echo time(); ?>">
-    <script src="../javascript/dashboard_geral.js?v=<?php echo time(); ?>"></script>
 </head>
 
 <body onload="Comeco()">
@@ -138,7 +137,7 @@ foreach ($registros_manutencao as $registro) {
                     <div id="table4">
                         <h2>Nome Trem</h2>
                         <?php
-                    
+
                         $stmt = $conn->prepare("SELECT m.id_manutencao, m.problema_manutencao, t.nome_trem FROM manutencao AS m INNER JOIN trens AS t ON trem_manutencao = id_trem WHERE m.resolvido_manutencao = 'Não'");
                         $stmt->execute();
                         $resultado = $stmt->get_result();
@@ -163,14 +162,20 @@ foreach ($registros_manutencao as $registro) {
                     <div id="table5">
                         <h2>Problema / Ação</h2>
                         <?php
+
+
                         if (!empty($manutencao_nao_iniciada)) {
                             $contador = 0;
                             foreach ($manutencao_nao_iniciada as $trem) {
                                 $id_manutencao = $trem['id_manutencao'];
                                 echo '<div class="registro-manutencao">';
                                 echo '<h3>' . $trem['problema_manutencao'] . '</h3>';
-                                echo "<input type='submit' value='Marcar como Fazendo' name='BotaoIniciar$id_manutencao' class='botao-iniciar'>";
                                 echo '</div>';
+
+                                if (($_SESSION["cargo_funcionario"] == "Gerente") || ($_SESSION["cargo_funcionario"] == "Equipe_Manutencao")) {
+                                    echo "<input type='submit' value='Marcar como Fazendo' name='BotaoIniciar$id_manutencao' class='botao-iniciar'>";
+                                    echo '</div>';
+                                }
 
                                 if ($contador < $NumeroDeManutencao_NI - 1) echo '<hr>';
                                 $contador++;
@@ -216,20 +221,27 @@ foreach ($registros_manutencao as $registro) {
                     <div id="table5">
                         <h2>Problema / Ação</h2>
                         <?php
+
                         if (!empty($manutencao_andamento)) {
                             $contador = 0;
                             foreach ($manutencao_andamento as $trem) {
                                 $id_manutencao = $trem['id_manutencao'];
                                 echo '<div class="registro-manutencao">';
                                 echo '<h3>' . $trem['problema_manutencao'] . '</h3>';
-                                echo "<input type='submit' value='Marcar como Finalizado' name='BotaoFinalizar$id_manutencao' class='botao-finalizar'>";
                                 echo '</div>';
 
-                                if ($contador < $NumeroDeManutencao_Andamento - 1) echo '<hr>';
-                                $contador++;
+                                if (($_SESSION["cargo_funcionario"] == "Gerente") || ($_SESSION["cargo_funcionario"] == "Equipe_Manutencao")) {
+                                    echo "<input type='submit' value='Marcar como Finalizado' name='BotaoFinalizar$id_manutencao' class='botao-finalizar'>";
+                                    echo '</div>';
+                                }
+
+                                if ($contador < $NumeroDeManutencao_Andamento - 1) {
+                                    echo '<hr>';
+                                    $contador++;
+                                } else {
+                                    echo '<div class="registro-manutencao"><h3>-</h3></div>';
+                                }
                             }
-                        } else {
-                            echo '<div class="registro-manutencao"><h3>-</h3></div>';
                         }
                         ?>
                     </div>
@@ -268,13 +280,13 @@ foreach ($registros_manutencao as $registro) {
                 <div id="table5">
                     <h2>Problema</h2>
                     <?php
-                    
+
                     if (!empty($manutencao_finalizada)) {
                         $contador = 0;
                         foreach ($manutencao_finalizada as $trem) {
                             echo '<div class="registro-manutencao">';
                             echo '<h3>' . $trem['problema_manutencao'] . '</h3>';
-                            
+
                             echo '</div>';
                             if ($contador < $NumeroDeManutencao_Finalizada - 1) echo '<hr>';
                             $contador++;
