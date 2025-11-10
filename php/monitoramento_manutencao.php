@@ -122,14 +122,6 @@ foreach ($registros_manutencao as $registro) {
         </div>
 
         <!-- Cabeçalhos das colunas -->
-        <div id="divbody">
-            <div id="table4">
-                <h2>Nome Trem</h2>
-            </div>
-            <div id="table5">
-                <h2>Status</h2>
-            </div>
-        </div>
 
         <!-- Linhas de dados dos trens -->
         <section id="NaoIniciado">
