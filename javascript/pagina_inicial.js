@@ -234,7 +234,7 @@ function central() {
 
 function manutencao() {
 
-    window.location.href = "monitoramento_manutencao_naoiniciado.php";
+    window.location.href = "monitoramento_manutencao.php";
 
 };
 
