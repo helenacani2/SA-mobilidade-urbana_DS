@@ -1,3 +1,25 @@
+<?php
+
+session_start();
+
+require_once "train_info_bd.php";
+
+if (!isset($_SESSION["conectado"]) || $_SESSION["conectado"] != true) {
+
+    header("Location: pagina_login.php");
+
+    exit;
+}
+
+if ($_SESSION["cargo_funcionario"] != "Gerente") {
+
+    header("Location: pagina_login.php");
+
+    exit;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 

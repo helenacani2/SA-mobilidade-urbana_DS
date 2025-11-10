@@ -4,6 +4,20 @@ require_once "train_info_bd.php";
 
 session_start();
 
+if (!isset($_SESSION["conectado"]) || $_SESSION["conectado"] != true) {
+
+    header("Location: pagina_login.php");
+
+    exit;
+}
+
+if ($_SESSION["cargo_funcionario"] != "Gerente") {
+
+    header("Location: pagina_login.php");
+
+    exit;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -44,9 +58,9 @@ session_start();
         <br>
         <br>
 
-        <label for="SensorTip" class="Legenda">Tipo do Sensor</label>
+        <label for="SensorTipo" class="Legenda">Tipo do Sensor</label>
 
-        <input type="text" id="SensorTipo" class="Texto" name="SensorTip" required>
+        <input type="text" id="SensorTipo" class="Texto" name="SensorTipo" required>
 
         <br>
         <br>

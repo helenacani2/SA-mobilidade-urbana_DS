@@ -4,23 +4,31 @@ session_start();
 
 require_once "train_info_bd.php";
 
-$NomeTrem = $_POST['TremNome'];
+if (!isset($_SESSION["conectado"]) || $_SESSION["conectado"] != true) {
 
-$FabricanteTrem = $_POST['TremFabricante'];
+    header("Location: pagina_login.php");
 
-$FabricacaoTrem = $_POST['TremData'];
+    exit;
+}
 
-$EstacaoTrem = $_POST['TremEstacao'];
+if ($_SESSION["cargo_funcionario"] != "Gerente") {
 
-$LinhaTrem = $_POST['TremLinha'];
+    header("Location: pagina_login.php");
 
-$MaquinistaTrem = $_POST['TremMaquinista'];
+    exit;
+}
 
-echo date("Y-m-d", strtotime($FabricacaoTrem));
+$NomeSensor = $_POST['SensorNome'];
 
-$stmt = $conn->prepare("INSERT INTO trens (nome_trem, data_fabricacao_trem, fabricante_trem) VALUES (?, ?, ?)");
+$TipoSensor = $_POST['SensorTipo'];
 
-$stmt->bind_param("sss", $NomeTrem, $FabricacaoTrem, $FabricanteTrem);
+$TremSensor = $_POST['TremSensor'];
+
+//Código que usa o nome do trem para encontrar o id
+
+$stmt = $conn->prepare("INSERT INTO sensores (nome_sensor, tipo_sensor, estado_sensor, trem_sensor) VALUES (?, ?, ?, ?)");
+
+$stmt->bind_param("ssis", $NomeSensor, $TipoSensor, 0, $TremFinal);
 
 if($stmt->execute()) {
 
