@@ -13,7 +13,6 @@ function andamento2() {
 }
 function andamento3() {
    
-
 }
 
 boton3.addEventListener("click", andamento3);

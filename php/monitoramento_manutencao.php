@@ -320,8 +320,6 @@ foreach ($registros_manutencao as $registro) {
 
             ?>
 
-
-
             <br>
         </div>
 
