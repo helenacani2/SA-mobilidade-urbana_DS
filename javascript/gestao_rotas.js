@@ -19,8 +19,8 @@ let DiasTempo = 1;
 
 function comeco(){
 
-    HorasTempo = (localStorage.getItem("TempoHora"));
-    MinutosTempo = (localStorage.getItem("TempoMinuto"));
+    HorasTempo = parseInt((localStorage.getItem("TempoHora")));
+    MinutosTempo = parseInt((localStorage.getItem("TempoMinuto")));
     NomeRotaSelecionada = (localStorage.getItem("NomeRotaSelecionada"));
 
 }
@@ -41,15 +41,19 @@ function tempo_estimado() {
 
     var m = parseInt(data.getMinutes());
 
-    HorasTempo = (localStorage.getItem("TempoHora"));
-    MinutosTempo = (localStorage.getItem("TempoMinuto"));
+    HorasTempo = parseInt((localStorage.getItem("TempoHora")));
+    MinutosTempo = parseInt((localStorage.getItem("TempoMinuto")));
     NomeRotaSelecionada = (localStorage.getItem("NomeRotaSelecionada"));
 
     DiasTempo = 0;
 
+    MinutosChegada = 0;
+
     MinutosChegada = m + MinutosTempo;
 
-    while(MinutosChegada >= 60) {
+    while (MinutosChegada >= 60) {
+
+        //alert(MinutosChegada);
 
         MinutosChegada = MinutosChegada - 60;   //essa parte foi parcialmente feita pelo João, créditos a ele
 
