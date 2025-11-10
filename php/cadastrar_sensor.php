@@ -1,8 +1,8 @@
 <?php
 
-session_start();
-
 require_once "train_info_bd.php";
+
+session_start();
 
 if (!isset($_SESSION["conectado"]) || $_SESSION["conectado"] != true) {
 
@@ -28,7 +28,7 @@ if ($_SESSION["cargo_funcionario"] != "Gerente") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../midias/logomenor.png" type="icon">
     <link rel="stylesheet" href="../css/cadastrar_trem.css?v=<?php echo time(); ?>">
-    <title>Cadastrar nova notificação</title>
+    <title>Cadastrar novo sensor</title>
 </head>
 
 <nav class="menu-hamburguer">
@@ -49,18 +49,44 @@ if ($_SESSION["cargo_funcionario"] != "Gerente") {
 
 <body>
 
-    <form action="cadastrar_notificacao_aux.php" method="POST">
+    <form action="cadastrar_sensor_aux.php" method="POST">
 
-        <label for="NotificacaoTitulo" class="Legenda">Título da notificação</label>
-        
-        <input type="text" id="NotificacaoTitulo" class="Texto" name="NotificacaoTitulo" required>
+        <label for="SensorNome" class="Legenda">Nome do Sensor</label>
+
+        <input type="text" id="SensorNome" class="Texto" name="SensorNome" required>
 
         <br>
         <br>
 
-        <label for="NotificacaoMensagem" class="Legenda">Mensagem da Notificação</label>
-        
-        <input type="text" id="NotificacaoMensagem" class="Texto" name="NotificacaoMensagem" required>
+        <label for="SensorTipo" class="Legenda">Tipo do Sensor</label>
+
+        <input type="text" id="SensorTipo" class="Texto" name="SensorTipo" required>
+
+        <br>
+        <br>
+
+        <label for="TremSensor" class="Legenda">Trem Associado</label>
+
+        <select id="TremSensor" class="Texto" name="TremSensor" required>
+
+            <?php
+
+            $sql = "SELECT * FROM trens";
+            $ResultadoTrens = $conn->query($sql);
+
+            if ($ResultadoTrens && $ResultadoTrens->num_rows >= 1) {
+
+                $Trens = $ResultadoTrens->fetch_all(MYSQLI_ASSOC);
+            }
+
+            foreach ($Trens as $linhaTrens) {
+
+                echo "<option>" . $linhaTrens['nome_trem'] . "</option>";
+            }
+
+            ?>
+
+        </select>
 
         <br>
         <br>

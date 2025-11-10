@@ -4,7 +4,19 @@ session_start();
 
 require_once "train_info_bd.php";
 
-//(nome_trem, estacao_atual_trem, linha_atual_trem, data_fabricacao_trem, fabricante_trem, maquinista_trem)
+if (!isset($_SESSION["conectado"]) || $_SESSION["conectado"] != true) {
+
+    header("Location: pagina_login.php");
+
+    exit;
+}
+
+if ($_SESSION["cargo_funcionario"] != "Gerente") {
+
+    header("Location: pagina_login.php");
+
+    exit;
+}
 
 $NomeTrem = $_POST['TremNome'];
 
@@ -19,11 +31,6 @@ $LinhaTrem = $_POST['TremLinha'];
 $MaquinistaTrem = $_POST['TremMaquinista'];
 
 echo date("Y-m-d", strtotime($FabricacaoTrem));
-
-
-/* $stmt = $conn->prepare("INSERT INTO trens (nome_trem, estacao_atual_trem, linha_atual_trem, data_fabricacao_trem, fabricante_trem, maquinista_trem) VALUES (?, ?, ?, ?, ?, ?)"); */
-
-/* $stmt->bind_param("ssssss", $NomeTrem, $EstacaoTrem, $LinhaTrem, $FabricacaoTrem, $FabricanteTrem, $MaquinistaTrem); */
 
 $stmt = $conn->prepare("INSERT INTO trens (nome_trem, data_fabricacao_trem, fabricante_trem) VALUES (?, ?, ?)");
 

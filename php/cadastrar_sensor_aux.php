@@ -18,17 +18,21 @@ if ($_SESSION["cargo_funcionario"] != "Gerente") {
     exit;
 }
 
-$TipoAlerta = $_POST['AlertaTipo'];
+$NomeSensor = $_POST['SensorNome'];
 
-$MensagemNotificacao = $_POST['AlertaMensagem'];
+$TipoSensor = $_POST['SensorTipo'];
 
-$stmt = $conn->prepare("INSERT INTO alertas (tipo_alerta, mensagem_alerta) VALUES (?, ?)");
+$TremSensor = $_POST['TremSensor'];
 
-$stmt->bind_param("ss", $TipoAlerta, $MensagemNotificacao);
+//Código que usa o nome do trem para encontrar o id
+
+$stmt = $conn->prepare("INSERT INTO sensores (nome_sensor, tipo_sensor, estado_sensor, trem_sensor) VALUES (?, ?, ?, ?)");
+
+$stmt->bind_param("ssis", $NomeSensor, $TipoSensor, 0, $TremFinal);
 
 if($stmt->execute()) {
 
-    header("Location: cadastrar_alerta.php");
+    header("Location: cadastrar_trem.php");
 
     exit;
 
