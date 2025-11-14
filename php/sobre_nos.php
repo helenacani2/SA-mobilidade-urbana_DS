@@ -37,10 +37,86 @@
         </div>
     </header>
     <main>
-        <section>
-            <div name="texto_principal"></div>
-            <div name="texto_segundario"></div>
+        <section id="parte_um">
+            <div id="texto_principal"></div>
+            <div id="texto_segundario"></div>
         </section>
+
+        <section>
+            <div><img src="" alt=""></div>
+            <div></div>
+
+            <div id="pontualidade">
+                <div></div>
+                <div></div>
+            </div>
+            <div id="Conforto">
+                <div></div>
+                <div></div>
+            </div>
+            <div id="Qualidade">
+                <div></div>
+                <div></div>
+            </div>
+            <div id="objetivo"></div>
+        </section>
+
+        <section id="parte_dois">
+            <div><img src="" alt=""></div>
+            <div></div>
+
+            <div name="avaliação">
+                <div></div>
+                <div></div>
+            </div>
+            <div name="avaliação">
+                <div></div>
+                <div></div>
+            </div>
+            <div name="avaliação">
+                <div></div>
+                <div></div>
+            </div>
+            <div name="objetivo"></div>
+        </section>
+        <section id="parte_tres">
+            <div><img src="" alt=""></div>
+            <div></div>
+
+            <section>
+                <div id="titulo"></div>
+                <div id="telefone">
+                    <div></div>
+                    <div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+                <div id="email">
+                    <div></div>
+                    <div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+                <div id="endereco">
+                    <div></div>
+                    <div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+                <div id="horario_atendimento">
+                    <div></div>
+                    <div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+
     </main>
     <footer>
 
