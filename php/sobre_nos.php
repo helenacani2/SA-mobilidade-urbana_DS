@@ -6,21 +6,25 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 
+<script src="../javascript/monitoramento.js?v=<?php echo time(); ?>"></script>
+<script src="../javascript/teste.js?v=<?php echo time(); ?>"></script>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/sobre_nos.css?v=<?php echo time(); ?>">
     <title>Sobre nós</title>
 </head>
 
 <body>
-    <header>
+    <header id="topo_base">
         <div>
-            <img src="" alt="">
+            <img src="../midias/logotraininfo.png" class="logo_topo">
         </div>
         <div>
-            <nav class="menu-hamburguer">
+            <nav class="menu-hamburguer logo_topo">
                 <input type="checkbox" id="menu-toggle" />
-                <label for="menu-toggle" class="menu-icon">☰</label>
+                <label for="menu-toggle" class="menu-icon ">☰</label>
 
                 <ul class="menu-opcoes">
                     <form method="post">
@@ -37,14 +41,25 @@
         </div>
     </header>
     <main>
+
         <section id="parte_um">
-            <div id="texto_principal"></div>
-            <div id="texto_segundario"></div>
+            <div id="texto_principal">
+                <h2>Conectando Pessoas, Destinos e Oportundades</h2>
+            </div>
+            <div id="texto_segundario">
+                <h4></h4>
+            </div>
         </section>
 
         <section>
-            <div><img src="" alt=""></div>
-            <div></div>
+
+            <div>
+                <div name="bolinha_imagem"><img id="" src=""></div>
+                <div>
+                    <h2>Objetivo:</h2>
+                </div>
+            </div>
+
 
             <div id="pontualidade">
                 <div></div>
