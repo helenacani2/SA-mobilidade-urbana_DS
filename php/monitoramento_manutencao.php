@@ -170,6 +170,9 @@ foreach ($registros_manutencao as $registro) {
                                 $id_manutencao = $trem['id_manutencao'];
                                 echo '<div class="registro-manutencao">';
                                 echo '<h3>' . $trem['problema_manutencao'] . '</h3>';
+
+                                echo "<input class='BotaoResolver' type='submit' name='BotaoIniciar$id_manutencao' value='Marcar como Fazendo'>";
+
                                 echo '</div>';
 
                                 /* if (($_SESSION["cargo_funcionario"] == "Gerente") || ($_SESSION["cargo_funcionario"] == "Equipe_Manutencao")) {
@@ -228,6 +231,9 @@ foreach ($registros_manutencao as $registro) {
                                 $id_manutencao = $trem['id_manutencao'];
                                 echo '<div class="registro-manutencao">';
                                 echo '<h3>' . $trem['problema_manutencao'] . '</h3>';
+
+                                echo "<input class='BotaoResolver' type='submit' name='BotaoIniciar$id_manutencao' value='Marcar como Finalizado'>";
+
                                 echo '</div>';
 
                                 /* if (($_SESSION["cargo_funcionario"] == "Gerente") || ($_SESSION["cargo_funcionario"] == "Equipe_Manutencao")) {
