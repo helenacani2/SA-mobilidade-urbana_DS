@@ -121,6 +121,14 @@ foreach ($registros_manutencao as $registro) {
         </div>
 
         <!-- Cabeçalhos das colunas -->
+        <div id="divbody">
+            <div id="table4">
+                <h2>Nome Trem</h2>
+            </div>
+            <div id="table5">
+                <h2>Status</h2>
+            </div>
+        </div>
 
         <!-- Linhas de dados dos trens -->
         <section id="NaoIniciado">
@@ -164,10 +172,10 @@ foreach ($registros_manutencao as $registro) {
                                 echo '<h3>' . $trem['problema_manutencao'] . '</h3>';
                                 echo '</div>';
 
-                                if (($_SESSION["cargo_funcionario"] == "Gerente") || ($_SESSION["cargo_funcionario"] == "Equipe_Manutencao")) {
+                                /* if (($_SESSION["cargo_funcionario"] == "Gerente") || ($_SESSION["cargo_funcionario"] == "Equipe_Manutencao")) {
                                     echo "<input type='submit' value='Marcar como Fazendo' name='BotaoIniciar$id_manutencao' class='botao-iniciar'>";
                                     echo '</div>';
-                                }
+                                } */
 
                                 if ($contador < $NumeroDeManutencao_NI - 1) echo '<hr>';
                                 $contador++;
@@ -222,10 +230,10 @@ foreach ($registros_manutencao as $registro) {
                                 echo '<h3>' . $trem['problema_manutencao'] . '</h3>';
                                 echo '</div>';
 
-                                if (($_SESSION["cargo_funcionario"] == "Gerente") || ($_SESSION["cargo_funcionario"] == "Equipe_Manutencao")) {
+                                /* if (($_SESSION["cargo_funcionario"] == "Gerente") || ($_SESSION["cargo_funcionario"] == "Equipe_Manutencao")) {
                                     echo "<input type='submit' value='Marcar como Finalizado' name='BotaoFinalizar$id_manutencao' class='botao-finalizar'>";
                                     echo '</div>';
-                                }
+                                }*/
 
                                 if ($contador < $NumeroDeManutencao_Andamento - 1) {
                                     echo '<hr>';
@@ -319,6 +327,8 @@ foreach ($registros_manutencao as $registro) {
             }
 
             ?>
+
+
 
             <br>
         </div>
