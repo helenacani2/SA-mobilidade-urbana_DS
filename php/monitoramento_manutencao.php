@@ -171,7 +171,11 @@ foreach ($registros_manutencao as $registro) {
                                 echo '<div class="registro-manutencao">';
                                 echo '<h3>' . $trem['problema_manutencao'] . '</h3>';
 
-                                echo "<input class='BotaoResolver' type='submit' name='BotaoIniciar$id_manutencao' value='Marcar como Fazendo'>";
+                                if (($_SESSION["cargo_funcionario"] == "Gerente") || ($_SESSION["cargo_funcionario"] == "Equipe_Manutencao")) {
+
+                                    echo "<input class='BotaoResolver' type='submit' name='BotaoIniciar$id_manutencao' value='Marcar como Fazendo'>";
+
+                                }
 
                                 echo '</div>';
 
@@ -232,7 +236,11 @@ foreach ($registros_manutencao as $registro) {
                                 echo '<div class="registro-manutencao">';
                                 echo '<h3>' . $trem['problema_manutencao'] . '</h3>';
 
-                                echo "<input class='BotaoResolver' type='submit' name='BotaoIniciar$id_manutencao' value='Marcar como Finalizado'>";
+                                if (($_SESSION["cargo_funcionario"] == "Gerente") || ($_SESSION["cargo_funcionario"] == "Equipe_Manutencao")) {
+
+                                    echo "<input class='BotaoResolver' type='submit' name='BotaoFinalizar$id_manutencao' value='Marcar como Finalizado'>";
+
+                                }
 
                                 echo '</div>';
 
@@ -273,6 +281,15 @@ foreach ($registros_manutencao as $registro) {
                         foreach ($manutencao_finalizada as $trem) {
                             echo '<div class="registro-manutencao">';
                             echo '<h3>' . $trem['nome_trem'] . '</h3>';
+
+                            /* if (($_SESSION["cargo_funcionario"] == "Gerente") || ($_SESSION["cargo_funcionario"] == "Equipe_Manutencao")) {
+
+                                echo "<input class='BotaoResolver' type='submit' name='Excluir$id_manutencao' value='Excluir Registro'>";
+
+                            } */
+
+                                //Helena vai arrumar isso
+
                             echo '</div>';
                             if ($contador < $NumeroDeManutencao_Finalizada - 1) echo '<hr>';
                             $contador++;
