@@ -28,6 +28,7 @@
 
                 <ul class="menu-opcoes">
                     <form method="post">
+
                         <li><a href="pagina_inicial.php">Início</a></li>
                         <li><a href="perfil_condutor.php">Perfil</a></li>
                         <li><a href="gestao_rotas.php">Rotas</a></li>
@@ -47,35 +48,55 @@
                 <h2>Conectando Pessoas, Destinos e Oportundades</h2>
             </div>
             <div id="texto_segundario">
-                <h4></h4>
+                <h4>Seu transporte ferroviário de confiança para uma jornada segura e confortável</h4>
             </div>
         </section>
 
         <section>
 
             <div>
-                <div name="bolinha_imagem"><img id="" src=""></div>
+                <div class="organizacao_centro">
+                    <div class="bolinha_selecao"> <img id="" src="../midias/Espiral.png.png"></div>
+
+                </div>
+                <div name="bolinha_imagem"></div>
                 <div>
-                    <h2>Objetivo:</h2>
+                    <p class="teste">Objetivo:</p>
                 </div>
             </div>
 
-
-            <div id="pontualidade">
-                <div></div>
-                <div></div>
+            <div class="organiza_flex">
+                <div id="pontualidade" class="cor_pontos_um">
+                    <div>
+                        <p>Pontualidade</p>
+                    </div>
+                    <div>
+                        <p>Garantimos que você chegue ao seu destino no horário planejado, todos os dias.</p>
+                    </div>
+                </div>
+                <div id="Conforto" class="cor_pontos_um">
+                    <div>
+                        <p>Conforto</p>
+                    </div>
+                    <div>
+                        <p>Viagens confortáveis com trens modernos e bem mantidos para sua comodidade.</p>
+                    </div>
+                </div>
+                <div id="Qualidade" class="cor_pontos_um">
+                    <div>Qualidade</div>
+                    <div>Compromisso com excelência em cada viagem, priorizando sua experiência.</div>
+                </div>
             </div>
-            <div id="Conforto">
-                <div></div>
-                <div></div>
+            <br><br>
+            <div id="objetivo">
+                <p>
+                    Nosso objetivo é proporcionar um serviço de transporte ferroviário que conecte comunidades,
+                    facilite o acesso ao trabalho e lazer, e contribua para um futuro mais sustentável.
+                    Trabalhamos incansavelmente para oferecer a melhor experiência de viagem possível.
+                </p>
             </div>
-            <div id="Qualidade">
-                <div></div>
-                <div></div>
-            </div>
-            <div id="objetivo"></div>
         </section>
-
+        <!--=============================================================================================================-->
         <section id="parte_dois">
             <div><img src="" alt=""></div>
             <div></div>
