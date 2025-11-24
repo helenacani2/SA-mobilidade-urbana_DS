@@ -166,6 +166,7 @@ foreach ($registros_manutencao as $registro) {
 
                                 if (($_SESSION["cargo_funcionario"] == "Gerente") || ($_SESSION["cargo_funcionario"] == "Equipe_Manutencao")) {
                                     echo "<input type='submit' value='Marcar como Fazendo' name='BotaoIniciar$id_manutencao' class='botao-iniciar'>";
+                                    echo '<br>';
                                     echo '</div>';
                                 }
 
