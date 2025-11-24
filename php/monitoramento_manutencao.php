@@ -53,6 +53,21 @@ foreach ($registros_manutencao as $registro) {
     if ($status_atual === 'Andamento' && isset($_POST["BotaoFinalizar$id_manutencao"])) {
         $sql = "UPDATE manutencao SET resolvido_manutencao='Sim' WHERE id_manutencao = $id_manutencao";
         $conn->query($sql);
+
+        $DataAtual = date("Y-m-d H:i:s");
+
+        $stmt = $conn->prepare("INSERT INTO manutencao (data_termino_manutencao) WHERE id_manutencao = $id_manutencao VALUES (?)");
+
+        $stmt->bind_param("s", $DataAtual);
+
+        if($stmt->execute()) {
+
+        } else {
+
+            echo "Erro ao inserir: " . $stmt->error;
+
+        }
+
         header("Location: " . $_SERVER['PHP_SELF']);
         exit;
     }
