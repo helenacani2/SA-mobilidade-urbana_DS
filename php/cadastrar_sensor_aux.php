@@ -22,28 +22,39 @@ $NomeSensor = $_POST['SensorNome'];
 
 $TipoSensor = $_POST['SensorTipo'];
 
+$EstadoSensor = 0;
+
 $TremSensor = $_POST['TremSensor'];
 
-//Código que usa o nome do trem para encontrar o id
+
+$stmt = $conn->prepare("SELECT id_trem FROM trens WHERE nome_trem='$TremSensor'");
+$stmt->execute();
+$ResultadoTrem = $stmt->get_result();
+$TremEscolhidoID = $ResultadoTrem->fetch_all(MYSQLI_ASSOC);
+
+
+foreach ($TremEscolhidoID as $TremEscolhidoIDAux) {
+
+    $TremFinal = $TremEscolhidoIDAux['id_trem'];
+
+}
 
 $stmt = $conn->prepare("INSERT INTO sensores (nome_sensor, tipo_sensor, estado_sensor, trem_sensor) VALUES (?, ?, ?, ?)");
 
-$stmt->bind_param("ssis", $NomeSensor, $TipoSensor, 0, $TremFinal);
+$stmt->bind_param("ssii", $NomeSensor, $TipoSensor, $EstadoSensor, $TremFinal);
 
-if($stmt->execute()) {
+if ($stmt->execute()) {
 
-    header("Location: cadastrar_trem.php");
+    header("Location: cadastrar_sensor.php");
 
     exit;
 
 } else {
 
     echo "Erro ao inserir: " . $stmt->error;
-
 }
 
-    $stmt->close();
-    $conn->close();
-
+$stmt->close();
+$conn->close();
 
 ?>

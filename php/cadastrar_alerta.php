@@ -60,7 +60,7 @@ if ($_SESSION["cargo_funcionario"] != "Gerente") {
 
         <label for="AlertaMensagem" class="Legenda">Mensagem do Alerta</label>
         
-        <input type="text" id="AlertaMensagem" class="Texto" name="AlertaMensagem" required>
+        <input type="text" id="AlertaMensagem" class="Texto" name="AlertaMensagem" maxlength="200" required>
 
         <br>
         <br>

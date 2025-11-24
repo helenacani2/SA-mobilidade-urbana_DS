@@ -161,14 +161,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <?php
 
-        if ($_SESSION["cargo_funcionario"] == "Gerente") {
-            
-            echo '<br>';
-            echo '<a href="cadastrar_sensor.php" id="BotaoCadastrarSensor">ㅤCadastrar novo sensorㅤ</a>';
+    if ($_SESSION["cargo_funcionario"] == "Gerente") {
 
-        };
+        echo '<br>';
+        echo '<a href="cadastrar_sensor.php" id="BotaoCadastrarSensor">ㅤCadastrar novo sensorㅤ</a>';
+    };
 
-        ?>
+    ?>
 
     <div id="table1">
 
@@ -191,15 +190,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div id="table4">
             <?php
 
-            if (!empty($trens)) {
+            $stmt = $conn->prepare("SELECT * FROM sensores");
+            $stmt->execute();
+
+            $ResultadoSenosres = $stmt->get_result();
+
+            $Sensores = $ResultadoSenosres->fetch_all(MYSQLI_ASSOC);
+
+            $NumeroDeSensores = $ResultadoSenosres->num_rows;
+
+
+
+
+
+
+
+
+
+
+
+
+
+            if (!empty($Sensores)) {
 
                 $contador = 1;
 
-                foreach ($trens as $trem) {
+                foreach ($Sensores as $Sensor) {
 
-                    echo '<h3>' . $trem['nome_trem'] . '</h3>';
+                    echo '<h3>' . $Sensor['nome_sensor'] . '</h3>';
 
-                    if ($contador != $NumeroDeTrens) {
+                    if ($contador != $NumeroDeSensores) {
 
                         echo '<hr>';
                     }
@@ -214,15 +234,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <?php
 
-            if (!empty($trens)) {
+            if (!empty($Sensores)) {
 
                 $contador = 1;
 
-                foreach ($trens as $trem) {
+                foreach ($Sensores as $Sensor) {
 
-                    echo '<h3>' . 'Placeholder' . '</h3>';
+                    echo '<h3>' . $Sensor['estado_sensor'] . '</h3>';
 
-                    if ($contador != $NumeroDeTrens) {
+                    if ($contador != $NumeroDeSensores) {
 
                         echo '<hr>';
                     }

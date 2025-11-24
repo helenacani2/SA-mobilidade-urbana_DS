@@ -25,7 +25,7 @@ hr {
     padding: 10px 0; 
     min-height: 40px; 
     display: flex;
-    flex-direction: column; 
+    /* flex-direction: line;  */
     justify-content: center; 
 }
 
@@ -668,5 +668,30 @@ label.menu-icon {
     width: 100%;
 
     opacity: 100%;
+
+}
+
+.BotaoResolver {
+
+    opacity: 100%;
+    width: 100%;
+
+    border-style:solid;
+
+    border-width: 1px;
+
+    background-color: #285775;
+
+    color: #ffffff;
+
+    border-color: black;
+
+    border-radius: 4px;
+
+    text-decoration: none;
+
+    margin-left: 1%;
+
+    max-width: 160px;
 
 }
