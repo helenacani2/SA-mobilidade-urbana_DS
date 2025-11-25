@@ -16,107 +16,69 @@
     <title>Sobre nós</title>
 </head>
 
-<body>
-    <header id="topo_base">
-        <div>
-            <img src="../midias/logotraininfo.png" class="logo_topo">
-        </div>
-        <div>
-            <nav class="menu-hamburguer logo_topo">
-                <input type="checkbox" id="menu-toggle" />
-                <label for="menu-toggle" class="menu-icon ">☰</label>
+       <body>
 
-                <ul class="menu-opcoes">
-                    <form method="post">
-
-                        <li><a href="pagina_inicial.php">Início</a></li>
-                        <li><a href="perfil_condutor.php">Perfil</a></li>
-                        <li><a href="gestao_rotas.php">Rotas</a></li>
-                        <li><a href="dash_board_geral.php">Dashboard</a></li>
-                        <li><a href="relatorio_analise.php">Relatórios</a></li>
-                        <li><a href="central_apoio_condutor.php">Central de Apoio</a></li>
-                        <li><input type="submit" name="BotaoSair" id="BotaoSair" value="Sair"></li>
-                    </form>
-                </ul>
-            </nav>
+    <header>
+        <div class="logo">
+            <i data-lucide="train" size="24" color="white"></i>
+            <span>TransRail</span>
         </div>
+        <nav>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <ul>
+                <li><a href="#objetivo">Objetivo</a></li>
+                <li><a href="#avaliacoes">Avaliações</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
     </header>
-    <main>
 
-        <section id="parte_um">
-            <div id="texto_principal">
-                <h2>Conectando Pessoas, Destinos e Oportundades</h2>
-            </div>
-            <div id="texto_segundario">
-                <h4>Seu transporte ferroviário de confiança para uma jornada segura e confortável</h4>
-            </div>
-        </section>
+    <section id="hero">
+        <h2>Conectando Pessoas, Destinos e Oportunidades</h2>
+        <p>Seu transporte ferroviário de confiança para uma jornada segura e confortável</p>
+    </section>
 
-        <section>
-
-            <div>
-                <div class="organizacao_centro">
-                    <div class="bolinha_selecao"> <img id="" src="../midias/Espiral.png.png"></div>
-
-                </div>
-                <div name="bolinha_imagem"></div>
-                <div>
-                    <p class="teste">Objetivo:</p>
-                </div>
+    <section id="objetivo">
+        <div class="titulo-secao">
+            <div class="icone-titulo">
+                <i data-lucide="target" size="24"></i>
             </div>
-
-            <div class="organiza_flex">
-                <div id="pontualidade" class="cor_pontos_um">
-                    <div>
-                        <p>Pontualidade</p>
-                    </div>
-                    <div>
-                        <p>Garantimos que você chegue ao seu destino no horário planejado, todos os dias.</p>
-                    </div>
+            <h2>Nosso Objetivo</h2>
+        </div>
+        <div class="objetivos-grid">
+            <div class="obj-card">
+                <div class="icone">
+                    <i data-lucide="clock" size="20"></i>
                 </div>
-                <div id="Conforto" class="cor_pontos_um">
-                    <div>
-                        <p>Conforto</p>
-                    </div>
-                    <div>
-                        <p>Viagens confortáveis com trens modernos e bem mantidos para sua comodidade.</p>
-                    </div>
-                </div>
-                <div id="Qualidade" class="cor_pontos_um">
-                    <div>Qualidade</div>
-                    <div>Compromisso com excelência em cada viagem, priorizando sua experiência.</div>
-                </div>
+                <h3>Pontualidade</h3>
+                <p>Garantimos que você chegue ao seu destino no horário planejado, todos os dias.</p>
             </div>
-            <br><br>
-            <div id="objetivo">
-                <p>
-                    Nosso objetivo é proporcionar um serviço de transporte ferroviário que conecte comunidades,
-                    facilite o acesso ao trabalho e lazer, e contribua para um futuro mais sustentável.
-                    Trabalhamos incansavelmente para oferecer a melhor experiência de viagem possível.
-                </p>
+            <div class="obj-card">
+                <div class="icone">
+                    <i data-lucide="train" size="20"></i>
+                </div>
+                <h3>Conforto</h3>
+                <p>Viagens confortáveis com trens modernos e bem mantidos para sua comodidade.</p>
             </div>
-        </section>
+            <div class="obj-card">
+                <div class="icone">
+                    <i data-lucide="target" size="20"></i>
+                </div>
+                <h3>Qualidade</h3>
+                <p>Compromisso com excelência em cada viagem, priorizando sua experiência.</p>
+            </div>
+        </div>
+        <div class="descricao-objetivo">
+            <p>
+                Nosso objetivo é proporcionar um serviço de transporte ferroviário que conecte comunidades,
+                facilite o acesso ao trabalho e lazer, e contribua para um futuro mais sustentável.
+                Trabalhamos incansavelmente para oferecer a melhor experiência de viagem possível.
+            </p>
+        </div>
+    </section
         <!--=============================================================================================================-->
-        <section id="parte_dois">
-            <div><img src="" alt=""></div>
-            <div></div>
 
-            <div name="avaliação">
-                <div></div>
-                <div></div>
-            </div>
-            <div name="avaliação">
-                <div></div>
-                <div></div>
-            </div>
-            <div name="avaliação">
-                <div></div>
-                <div></div>
-            </div>
-            <div name="objetivo"></div>
-        </section>
 
-        
         <section id="avaliacoes">
         <div class="titulo-secao">
             <div class="icone-titulo">
