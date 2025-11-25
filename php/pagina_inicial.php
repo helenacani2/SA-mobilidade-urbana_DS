@@ -42,6 +42,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <div class="barra_alinhar">
 
+            <div id="SobreNosBotao">
+                
+                <a href="sobre_nos.php" class="SobreNos">? Sobre ?</a>
+                <a href="sobre_nos.php" class="SobreNos">? Nós ?</a>
+
+            </div>
+
             <img id="logo" src="../midias/logotraininfo.png">
 
         </div>
