@@ -159,7 +159,7 @@ $contact_info = [
         <div class="footer-content">
             <p>
                 <i data-lucide="train" size="16" color="white"></i>
-                TransRail Express
+                Train.Info Express
             </p>
             <p>© 2024 TransRail Express. Todos os direitos reservados.</p>
         </div>
