@@ -49,7 +49,7 @@ $contact_info = [
     <header>
         <div class="logo">
             <i data-lucide="train" size="24" color="white"></i>
-            <span>TransRail</span>
+            <span>Train.Info</span>
         </div>
         <nav>
             <button class="menu-toggle" onclick="toggleMenu()">☰</button>
