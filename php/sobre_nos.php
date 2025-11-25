@@ -119,38 +119,71 @@
             <div><img src="" alt=""></div>
             <div></div>
 
-            <section>
-                <div id="titulo"></div>
-                <div id="telefone">
-                    <div></div>
+            <section id="contato">
+        <div class="titulo-secao">
+            <div class="icone-titulo">
+                <i data-lucide="mail" size="24"></i>
+            </div>
+            <h2>Entre em Contato</h2>
+            <p>Estamos aqui para ajudar você</p>
+        </div>
+        <div class="contato-grid">
+            <div class="info-card">
+                <h3>Informações de Contato</h3>
+                <div class="info-item">
+                    <div class="icone">
+                        <i data-lucide="phone" size="16"></i>
+                    </div>
                     <div>
-                        <div></div>
-                        <div></div>
+                        <p>Telefone</p>
+                        <p><?php echo htmlspecialchars($contact_info['phone']); ?></p>
                     </div>
                 </div>
-                <div id="email">
-                    <div></div>
+                <div class="info-item">
+                    <div class="icone">
+                        <i data-lucide="mail" size="16"></i>
+                    </div>
                     <div>
-                        <div></div>
-                        <div></div>
+                        <p>Email</p>
+                        <p><?php echo htmlspecialchars($contact_info['email']); ?></p>
                     </div>
                 </div>
-                <div id="endereco">
-                    <div></div>
+                <div class="info-item">
+                    <div class="icone">
+                        <i data-lucide="map-pin" size="16"></i>
+                    </div>
                     <div>
-                        <div></div>
-                        <div></div>
+                        <p>Endereço</p>
+                        <p><?php echo $contact_info['address']; // Não escapado para permitir <br> ?></p>
                     </div>
                 </div>
-                <div id="horario_atendimento">
-                    <div></div>
+                <div class="info-item">
+                    <div class="icone">
+                        <i data-lucide="clock" size="16"></i>
+                    </div>
                     <div>
-                        <div></div>
-                        <div></div>
+                        <p>Horário de Atendimento</p>
+                        <p><?php echo $contact_info['hours']; // Não escapado para permitir <br> ?></p>
                     </div>
                 </div>
-            </section>
-        </section>
+            </div>
+            <div class="form-card">
+                <h3>Envie uma Mensagem</h3>
+                <form method="post" action="#">
+                    <div class="form-group">
+                        <input type="text" name="nome" placeholder="Seu nome" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Seu email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="mensagem" placeholder="Sua mensagem" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">Enviar Mensagem</button>
+                </form>
+            </div>
+        </div>
+    </section>
 
 
     </main>
