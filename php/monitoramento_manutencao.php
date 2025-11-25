@@ -43,7 +43,10 @@ foreach ($registros_manutencao as $registro) {
 
     // de não para andamento
     if ($status_atual === 'Não' && isset($_POST["BotaoIniciar$id_manutencao"])) {
-        $sql = "UPDATE manutencao SET resolvido_manutencao='Andamento' WHERE id_manutencao = $id_manutencao";
+
+        $DataAtual = date("Y-m-d H:i:s");
+        
+        $sql = "UPDATE manutencao SET resolvido_manutencao='Andamento', data_termino_manutencao='$DataAtual' WHERE id_manutencao = $id_manutencao";
         $conn->query($sql);
         header("Location: " . $_SERVER['PHP_SELF']);
         exit;
@@ -52,7 +55,12 @@ foreach ($registros_manutencao as $registro) {
     // de andamento para sim
     if ($status_atual === 'Andamento' && isset($_POST["BotaoFinalizar$id_manutencao"])) {
         $sql = "UPDATE manutencao SET resolvido_manutencao='Sim' WHERE id_manutencao = $id_manutencao";
-        $conn->query($sql);
+        if (!$conn->query($sql)) {
+
+            echo "Erro ao inserir: " . $conn->error;
+
+        }
+
         header("Location: " . $_SERVER['PHP_SELF']);
         exit;
     }
@@ -181,6 +189,7 @@ foreach ($registros_manutencao as $registro) {
 
                                 /* if (($_SESSION["cargo_funcionario"] == "Gerente") || ($_SESSION["cargo_funcionario"] == "Equipe_Manutencao")) {
                                     echo "<input type='submit' value='Marcar como Fazendo' name='BotaoIniciar$id_manutencao' class='botao-iniciar'>";
+                                    echo '<br>';
                                     echo '</div>';
                                 } */
 
