@@ -1,5 +1,31 @@
 <?php
+$reviews = [
+    [
+        'name' => "Maria Silva",
+        'rating' => 5,
+        'comment' => "Serviço excelente! Pontualidade e conforto em todas as viagens.",
+        'date' => "Outubro 2024"
+    ],
+    [
+        'name' => "João Santos",
+        'rating' => 5,
+        'comment' => "Melhor opção para transporte diário. Sempre limpo e organizado.",
+        'date' => "Setembro 2024"
+    ],
+    [
+        'name' => "Ana Costa",
+        'rating' => 4,
+        'comment' => "Ótima experiência. Recomendo para quem busca pontualidade.",
+        'date' => "Agosto 2024"
+    ]
+];
 
+$contact_info = [
+    'phone' => "(11) 4000-0000",
+    'email' => "contato@transrail.com.br",
+    'address' => "Av. Paulista, 1000<br>São Paulo - SP, 01310-100",
+    'hours' => "Segunda a Sexta: 6h às 22h<br>Sábados e Domingos: 7h às 20h"
+];
 
 ?>
 
@@ -13,6 +39,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/sobre_nos.css?v=<?php echo time(); ?>">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
     <title>Sobre nós</title>
 </head>
 
