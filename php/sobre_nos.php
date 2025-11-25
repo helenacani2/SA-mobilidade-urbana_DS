@@ -115,72 +115,50 @@
             </div>
             <div name="objetivo"></div>
         </section>
-        <section id="parte_tres">
-            <div><img src="" alt=""></div>
-            <div></div>
 
-            <section id="contato">
+        
+        <section id="avaliacoes">
         <div class="titulo-secao">
             <div class="icone-titulo">
-                <i data-lucide="mail" size="24"></i>
+                <i data-lucide="star" size="24"></i>
             </div>
-            <h2>Entre em Contato</h2>
-            <p>Estamos aqui para ajudar você</p>
+            <h2>Avaliações dos Nossos Clientes</h2>
+            <p>Veja o que nossos passageiros dizem sobre nós</p>
         </div>
-        <div class="contato-grid">
-            <div class="info-card">
-                <h3>Informações de Contato</h3>
-                <div class="info-item">
-                    <div class="icone">
-                        <i data-lucide="phone" size="16"></i>
-                    </div>
-                    <div>
-                        <p>Telefone</p>
-                        <p><?php echo htmlspecialchars($contact_info['phone']); ?></p>
-                    </div>
+        <div class="avaliacoes-grid">
+            <?php foreach ($reviews as $review): ?>
+            <div class="review-card">
+                <div class="rating">
+                    <?php for ($i = 1; $i <= 5; $i++): ?>
+                        <?php if ($i <= $review['rating']): ?>
+                            <i data-lucide="star" fill="#35739b" color="#35739b" size="16"></i>
+                        <?php else: ?>
+                            <i data-lucide="star" fill="none" color="#35739b" size="16"></i>
+                        <?php endif; ?>
+                    <?php endfor; ?>
                 </div>
-                <div class="info-item">
-                    <div class="icone">
-                        <i data-lucide="mail" size="16"></i>
-                    </div>
-                    <div>
-                        <p>Email</p>
-                        <p><?php echo htmlspecialchars($contact_info['email']); ?></p>
-                    </div>
-                </div>
-                <div class="info-item">
-                    <div class="icone">
-                        <i data-lucide="map-pin" size="16"></i>
-                    </div>
-                    <div>
-                        <p>Endereço</p>
-                        <p><?php echo $contact_info['address']; // Não escapado para permitir <br> ?></p>
-                    </div>
-                </div>
-                <div class="info-item">
-                    <div class="icone">
-                        <i data-lucide="clock" size="16"></i>
-                    </div>
-                    <div>
-                        <p>Horário de Atendimento</p>
-                        <p><?php echo $contact_info['hours']; // Não escapado para permitir <br> ?></p>
-                    </div>
+                <p>"<?php echo htmlspecialchars($review['comment']); ?>"</p>
+                <div class="review-info">
+                    <span><?php echo htmlspecialchars($review['name']); ?></span>
+                    <span><?php echo htmlspecialchars($review['date']); ?></span>
                 </div>
             </div>
-            <div class="form-card">
-                <h3>Envie uma Mensagem</h3>
-                <form method="post" action="#">
-                    <div class="form-group">
-                        <input type="text" name="nome" placeholder="Seu nome" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" name="email" placeholder="Seu email" required>
-                    </div>
-                    <div class="form-group">
-                        <textarea name="mensagem" placeholder="Sua mensagem" required></textarea>
-                    </div>
-                    <button type="submit" class="btn-submit">Enviar Mensagem</button>
-                </form>
+            <?php endforeach; ?>
+        </div>
+        <div class="stats-card">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-value">4.8/5.0</div>
+                    <div class="stat-label">Avaliação Média</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">15.000+</div>
+                    <div class="stat-label">Avaliações</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">98%</div>
+                    <div class="stat-label">Satisfação</div>
+                </div>
             </div>
         </div>
     </section>
