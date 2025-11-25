@@ -1,6 +1,12 @@
-<?php 
+<?php
 
-namespace TrainInfo;
+namespace Bluerhinos;
+
+/*
+ 	phpMQTT
+	A simple php class to connect/publish/subscribe to an MQTT broker
+
+*/
 
 /*
 	Licence
@@ -28,8 +34,10 @@ namespace TrainInfo;
 	
 */
 
-class Conecta {
+/* phpMQTT */
 
+class phpMQTT
+{
     protected $socket;            /* holds the socket	*/
     protected $msgid = 1;            /* counter for message id */
     public $keepalive = 10;        /* default keepalive timmer */
@@ -129,6 +137,7 @@ class Conecta {
         }
 
         if ($this->cafile) {
+
             $socketContext = stream_context_create([
                 'ssl' => [
                     'verify_peer'       => true,
@@ -137,7 +146,7 @@ class Conecta {
                     'cafile'            => $this->cafile,
                     'crypto_method'     => STREAM_CRYPTO_METHOD_TLSv1_2_CLIENT,
                 ]
-                 ]);
+            ]);
 
             // Importante: usar ssl://, não tls://
             $this->socket = stream_socket_client(
@@ -148,9 +157,8 @@ class Conecta {
                 STREAM_CLIENT_CONNECT,
                 $socketContext
             );
-            
         } else {
-            
+
             // Fallback usando CA padrão do Linux
             $context = stream_context_create([
                 'ssl' => [
@@ -690,7 +698,4 @@ class Conecta {
     {
         error_log('Error:' . $message);
     }
-
 }
-
-?>
