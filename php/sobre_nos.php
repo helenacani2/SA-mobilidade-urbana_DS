@@ -159,9 +159,9 @@ $contact_info = [
         <div class="footer-content">
             <p>
                 <i data-lucide="train" size="16" color="white"></i>
-                Train.Info Express
+                Train.Info 
             </p>
-            <p>© 2024 TransRail Express. Todos os direitos reservados.</p>
+            <p>© 2024 Train.Info. Todos os direitos reservados.</p>
         </div>
     </footer>
 
