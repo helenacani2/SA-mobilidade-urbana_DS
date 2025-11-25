@@ -154,10 +154,39 @@
 
 
     </main>
-    <footer>
-
+     <footer>
+        <div class="footer-content">
+            <p>
+                <i data-lucide="train" size="16" color="white"></i>
+                TransRail Express
+            </p>
+            <p>© 2024 TransRail Express. Todos os direitos reservados.</p>
+        </div>
     </footer>
 
+    <script>
+        // Inicializa os ícones do Lucide
+        lucide.createIcons();
+
+        // Função para alternar o menu mobile
+        function toggleMenu() {
+            const navLinks = document.querySelector('nav ul');
+            if (navLinks.style.display === 'block') {
+                navLinks.style.display = 'none';
+            } else {
+                navLinks.style.display = 'block';
+            }
+        }
+
+        // Fecha o menu ao clicar em um link (em dispositivos móveis)
+        document.querySelectorAll('nav ul li a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth < 768) {
+                    toggleMenu();
+                }
+            });
+        });
+    </script>
 
 </body>
 
