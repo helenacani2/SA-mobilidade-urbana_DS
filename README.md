@@ -12,7 +12,7 @@ André Erci Freitag
 
 Helena Da Silva Cani
 
-Rafael Franklyn de Farias
+Rafael Franklin de Farias
 
 Iago König Kleestad
 

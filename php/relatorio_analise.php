@@ -23,41 +23,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-    $ValG1_1 = rand(0, 10);
-    $ValG1_2 = rand(0, 10);
-    $ValG1_3 = rand(0, 10);
-    $ValG1_4 = rand(0, 10);
-    $ValG1_5 = rand(0, 10);
-    $ValG1_6 = rand(0, 10);
-    $ValG1_7 = rand(0, 10);
-    $ValG1_8 = rand(0, 10);
-    $ValG1_9 = rand(0, 10);
-    $ValG1_10 = rand(0, 10);
-    $ValG1_11 = rand(0, 10);
-
-    $ValG2_1 = rand(0, 10);
-    $ValG2_2 = rand(0, 10);
-    $ValG2_3 = rand(0, 10);
-    $ValG2_4 = rand(0, 10);
-    $ValG2_5 = rand(0, 10);
-    $ValG2_6 = rand(0, 10);     //Esses valores são Placoholders que serão substituídos quando acontecer progresso na SA de IoT
-    $ValG2_7 = rand(0, 10);     //Isso foi feito para facilitar a aplicação dos dados de sensores quando os mesmos estiverem prontos
-    $ValG2_8 = rand(0, 10);
-    $ValG2_9 = rand(0, 10);
-    $ValG2_10 = rand(0, 10);
-    $ValG2_11 = rand(0, 10);
-
-    $ValG3_1 = rand(0, 10);
-    $ValG3_2 = rand(0, 10);
-    $ValG3_3 = rand(0, 10);
-    $ValG3_4 = rand(0, 10);
-    $ValG3_5 = rand(0, 10);
-    $ValG3_6 = rand(0, 10);
-    $ValG3_7 = rand(0, 10);
-    $ValG3_8 = rand(0, 10);
-    $ValG3_9 = rand(0, 10);
-    $ValG3_10 = rand(0, 10);
-    $ValG3_11 = rand(0, 10);
+    $ValG1_1 = rand(0, 100);
+    $ValG1_2 = rand(0, 100);
+    $ValG1_3 = rand(0, 100);
+    $ValG1_4 = rand(0, 100);
+    $ValG1_5 = rand(0, 100);    //Esses valores são Placoholders que serão substituídos quando acontecer progresso na SA de IoT
+    $ValG1_6 = rand(0, 100);    //Isso foi feito para facilitar a aplicação dos dados de sensores quando os mesmos estiverem prontos
+    $ValG1_7 = rand(0, 100);
+    $ValG1_8 = rand(0, 100);
+    $ValG1_9 = rand(0, 100);
+    $ValG1_10 = rand(0, 100);
+    $ValG1_11 = rand(0, 100);
 
 
 ?>
@@ -161,10 +137,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 new Chart(ctx, {
                     type: 'line',
                     data: {
-                        labels: ['Janeiro', 'Fevereiro', 'Abril', 'Maio', 'junho', 'julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+                        labels: ['00hrs', '01hrs', '02hrs', '03hrs', '04hrs', '05hrs', '06hrs', '07hrs', '08hrs', '09hrs', '10hrs', '11hrs', '12hrs', '13hrs', '14hrs', '15hrs', '16hrs', '17hrs', '18hrs', '19hrs', '20hrs', '21hrs', '22hrs', '23hrs'],
                         datasets: [{
-                            label: 'ganho',
-                            data: [$ValG1_1, $ValG1_2, $ValG1_3, $ValG1_4, $ValG1_5, $ValG1_6, $ValG1_7, $ValG1_8, $ValG1_9, $ValG1_10, $ValG1_11],
+                            label: 'km/h',
+                            data: [$ValG1_1, $ValG1_2, $ValG1_3, $ValG1_4, $ValG1_5, $ValG1_6, $ValG1_7, $ValG1_8, $ValG1_9, $ValG1_10, $ValG1_11, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                             borderWidth: 1
                         }]
                     },
@@ -220,76 +196,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         </section>
 
-        <section id="desempenho" class="bordaStatus">
-            <div class="posicaoTitulo">Desempenho/eficiência dos trens</div>
-            <div class="tamanhoGrafico">
-                <canvas id="desempenhoTrens"></canvas>
-            </div>
-            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-            <script>
-
-                <?php echo "
-                const ctx2 = document.getElementById('desempenhoTrens');
-
-                new Chart(ctx2, {
-                    type: 'line',
-                    data: {
-                        labels: ['Janeiro', 'Fevereiro', 'Abril', 'Maio', 'junho', 'julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-                        datasets: [{
-                            label: 'ganho',
-                            data: [$ValG2_1, $ValG2_2, $ValG2_3, $ValG2_4, $ValG2_5, $ValG2_6, $ValG2_7, $ValG2_8, $ValG2_9, $ValG2_10, $ValG2_11],
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        scales: {
-                            y: {
-                                beginAtZero: true
-                            }
-                        }
-                    }
-                });
-                "; ?>
-            </script>
-        </section>
-
-        <section id="ConsumoEnergia" class="bordaStatus">
-            <div class="posicaoTitulo">Consumo de energia dos trens</div>
-            <div class="tamanhoGrafico">
-                <canvas id="consumoTrens"></canvas>
-            </div>
-            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-            
-
-            <script>
-
-                <?php echo "
-                const ctx3 = document.getElementById('consumoTrens');
-
-                new Chart(ctx3, {
-                    type: 'line',
-                    data: {
-                        labels: ['Janeiro', 'Fevereiro', 'Abril', 'Maio', 'junho', 'julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-                        datasets: [{
-                            label: 'ganho',
-                            data: [$ValG3_1, $ValG3_2, $ValG3_3, $ValG3_4, $ValG3_5, $ValG3_6, $ValG3_7, $ValG3_8, $ValG3_9, $ValG3_10, $ValG3_11],
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        scales: {
-                            y: {
-                                beginAtZero: true
-                            }
-                        }
-                    }
-                });
-                "; ?>
-            </script>
-
-        </section>
+    
 
     </main>
     <footer>

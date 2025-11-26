@@ -154,7 +154,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                     <div class="input-container">
                         <label id="mensagem">Nenhum problema selecionado</label>
-                        <textarea name="ProblemaTrem" placeholder="Digite sua descrição aqui..." id="problem-description"></textarea>
+                        <textarea name="ProblemaTrem" placeholder="Digite sua descrição aqui..." id="problem-description" maxlength="8000"></textarea>
                     </div>
 
                     <label for="TremComProblema">Informe o trem com problema:</label>
