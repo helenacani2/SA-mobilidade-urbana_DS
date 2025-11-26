@@ -67,7 +67,7 @@ CREATE TABLE manutencao (
     id_manutencao INT PRIMARY KEY AUTO_INCREMENT,
     data_inicio_manutencao DATETIME NOT NULL,
     data_termino_manutencao DATETIME,
-    problema_manutencao VARCHAR(200) NOT NULL,
+    problema_manutencao VARCHAR(300) NOT NULL,
     resolvido_manutencao VARCHAR(10) NOT NULL DEFAULT 'Não',
     tipo_manutencao VARCHAR(45) NOT NULL DEFAULT 'Não especificado',
     trem_manutencao INT,
@@ -81,7 +81,7 @@ CREATE TABLE registro_medico (
 
     id_medic INT PRIMARY KEY AUTO_INCREMENT,
     data_medic DATETIME NOT NULL,
-    problema_medic VARCHAR(200) NOT NULL,
+    problema_medic VARCHAR(300) NOT NULL,
     resolvido_medic VARCHAR(10) NOT NULL DEFAULT 'Não',
     tipo_medic VARCHAR(20) NOT NULL DEFAULT 'Não especificado',
     funcionario_medic INT,

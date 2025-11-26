@@ -154,7 +154,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                     <div class="input-container">
                         <label id="mensagem">Nenhum problema selecionado</label>
-                        <textarea name="ProblemaSaude" placeholder="Digite sua descrição aqui..." id="problem-description" maxlength="200"></textarea>
+                        <textarea name="ProblemaSaude" placeholder="Digite sua descrição aqui..." id="problem-description" maxlength="300"></textarea>
                     </div>
 
                     <input type="submit" value="Enviar Relatório" id="botao_envio_apoio">
