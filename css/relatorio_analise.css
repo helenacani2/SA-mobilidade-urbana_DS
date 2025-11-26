@@ -48,7 +48,7 @@ body {
     border: 0.1rem solid rgb(126, 126, 126);
     padding: 1rem 0.5rem;
     margin: 1rem;
-        border-radius: 5px;
+    border-radius: 5px;
 }
 .graficoEstilo {
     border: 0.1rem solid rgb(126, 126, 126);
@@ -304,5 +304,90 @@ label.menu-icon {
     width: 100%;
 
     opacity: 100%;
+
+}
+
+.cell {
+
+    border-style:solid;
+
+    border-width: 1px;
+
+    border-color: black;
+
+    color: white;
+
+    background-color: #35739b;
+    
+}
+
+
+.cellHead {
+
+    border-style:solid;
+
+    border-width: 1px;
+
+    border-color: black;
+
+    color: white;
+
+    background-color: #285775;
+
+    width: 10%;
+
+}
+
+.Botao {
+
+    opacity: 100%;
+
+    width: 40%;
+
+    margin-left: 1%;
+
+    padding-left: 3%;
+
+}
+
+#SensoresTabela {
+
+    border: 0.1rem solid rgb(126, 126, 126);
+    padding: 1rem 0.5rem;
+    margin: 1rem;
+    border-radius: 5px;
+    width: 70%;
+
+}
+
+#BotaoExcluir {
+
+    margin-left: -30%;
+
+}
+
+.PopUp {
+
+    position: fixed;
+
+    top: 10%;
+
+    left: 10%;
+
+    width: 80%;
+
+    height: 80%;
+
+    background-color: #43718d;
+
+    color: white;
+
+    align-items: center;
+
+    align-content: center;
+
+    text-align: center;
+
+    z-index: 11;
 
 }

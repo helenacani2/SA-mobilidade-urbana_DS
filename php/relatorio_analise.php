@@ -11,6 +11,17 @@ if (!isset($_SESSION["conectado"]) || $_SESSION["conectado"] != true) {
     exit;
 }
 
+$stmt = $conn->prepare("SELECT s.id_sensor, s.nome_sensor, s.tipo_sensor, s.estado_sensor, t.nome_trem FROM sensores AS s INNER JOIN trens AS t ON trem_sensor = id_trem");
+
+$stmt->execute();
+
+$resultado = $stmt->get_result();
+
+if ($resultado && $resultado->num_rows >= 1) {
+
+    $sensores = $resultado->fetch_all(MYSQLI_ASSOC);
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (isset($_POST['BotaoSair'])) {
@@ -21,19 +32,125 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         header("Location: pagina_login.php");
     }
+
+
+
+
+    foreach ($sensores as $linhaSensores) {
+
+        $Contador = $linhaSensores['id_sensor'];
+
+
+        if (isset($_POST["Editar$Contador"])) {
+
+            $stmt = $conn->prepare("SELECT s.id_sensor, s.nome_sensor, s.tipo_sensor, s.estado_sensor, t.nome_trem FROM sensores AS s INNER JOIN trens AS t ON trem_sensor = id_trem WHERE s.id_sensor='$Contador'");
+
+            $stmt->execute();
+
+            $resultado = $stmt->get_result();
+
+            if ($resultado && $resultado->num_rows >= 1) {
+
+                $sensores = $resultado->fetch_all(MYSQLI_ASSOC);
+            }
+
+
+            echo '
+           
+           <div class="PopUp">
+           
+                <form method="POST">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th class="cellHead">ID</th>
+
+                            <th class="cellHead">Nome</th>
+
+                            <th class="cellHead">Tipo</th>
+
+                            <th class="cellHead">Estado</th>
+
+                            <th class="cellHead">Trem</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>';
+
+                        
+
+                        if (!empty($sensores)) {
+
+                            foreach ($sensores as $linha) {
+
+                                $ValorSensor = $linha["id_sensor"];
+
+                                echo "
+
+                                <tr>
+
+                                    <td class='cell'> ' . $linha[id_sensor] . ' </td>
+
+                                    <td class='cell'> ' . $linha[nome_sensor] . ' </td>
+
+                                    <td class='cell'> ' . $linha[tipo_sensor] . ' </td>
+
+                                    <td class='cell'> ' . $linha[estado_sensor] . ' </td>
+
+                                    <td class='cell'> ' . $linha[nome_trem] . ' </td>
+
+                                <td><input class='cellHead Botao' type='submit' value='Editar' name='Editar$ValorSensor'></td>
+
+                                </tr>";
+                            }
+                        }
+
+                        echo "
+                    
+                        
+                    </tbody>
+                </table>
+
+            </form>
+           
+           </div>
+           
+           ";
+
+
+
+            $_POST["Editar$Contador"] = NULL;
+
+            //header("Location: relatorio_analise.php");
+
+        }
+
+
+
+        if (isset($_POST["Excluir$Contador"])) {
+
+            echo "<script>alert('Exlusão')</script>";
+        }
+    }
 }
 
-    $ValG1_1 = rand(0, 100);
-    $ValG1_2 = rand(0, 100);
-    $ValG1_3 = rand(0, 100);
-    $ValG1_4 = rand(0, 100);
-    $ValG1_5 = rand(0, 100);    //Esses valores são Placoholders que serão substituídos quando acontecer progresso na SA de IoT
-    $ValG1_6 = rand(0, 100);    //Isso foi feito para facilitar a aplicação dos dados de sensores quando os mesmos estiverem prontos
-    $ValG1_7 = rand(0, 100);
-    $ValG1_8 = rand(0, 100);
-    $ValG1_9 = rand(0, 100);
-    $ValG1_10 = rand(0, 100);
-    $ValG1_11 = rand(0, 100);
+$ValG1_1 = rand(0, 300);
+$ValG1_2 = rand(0, 300);
+$ValG1_3 = rand(0, 300);
+$ValG1_4 = rand(0, 300);
+$ValG1_5 = rand(0, 300);    //Esses valores são Placoholders que serão substituídos quando acontecer progresso na SA de IoT
+$ValG1_6 = rand(0, 300);    //Isso foi feito para facilitar a aplicação dos dados de sensores quando os mesmos estiverem prontos
+$ValG1_7 = rand(0, 300);
+$ValG1_8 = rand(0, 300);
+$ValG1_9 = rand(0, 300);
+$ValG1_10 = rand(0, 300);
+$ValG1_11 = rand(0, 300);
 
 
 ?>
@@ -130,7 +247,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
             <script>
-
                 <?php echo "
                 const ctx = document.getElementById('graficoAnual');
 
@@ -140,7 +256,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         labels: ['00hrs', '01hrs', '02hrs', '03hrs', '04hrs', '05hrs', '06hrs', '07hrs', '08hrs', '09hrs', '10hrs', '11hrs', '12hrs', '13hrs', '14hrs', '15hrs', '16hrs', '17hrs', '18hrs', '19hrs', '20hrs', '21hrs', '22hrs', '23hrs'],
                         datasets: [{
                             label: 'km/h',
-                            data: [$ValG1_1, $ValG1_2, $ValG1_3, $ValG1_4, $ValG1_5, $ValG1_6, $ValG1_7, $ValG1_8, $ValG1_9, $ValG1_10, $ValG1_11, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                            data: [$ValG1_1, $ValG1_2, $ValG1_3, $ValG1_4, $ValG1_5, $ValG1_6, $ValG1_7, $ValG1_8, $ValG1_9, $ValG1_10, $ValG1_11, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 300, 0],
                             borderWidth: 1
                         }]
                     },
@@ -196,7 +312,72 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         </section>
 
-    
+        <section id="SensoresTabela">
+
+            <form method="POST">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th class="cellHead">ID</th>
+
+                            <th class="cellHead">Nome</th>
+
+                            <th class="cellHead">Tipo</th>
+
+                            <th class="cellHead">Estado</th>
+
+                            <th class="cellHead">Trem</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <?php
+
+
+                        if (!empty($sensores)) { //usuários
+
+                            foreach ($sensores as $linha) {
+
+                                $ValorSensor = $linha['id_sensor'];
+
+                                echo '<tr>
+
+                                    <td class="cell"> ' . $linha['id_sensor'] . ' </td>
+
+                                    <td class="cell"> ' . $linha['nome_sensor'] . ' </td>
+
+                                    <td class="cell"> ' . $linha['tipo_sensor'] . ' </td>
+
+                                    <td class="cell"> ' . $linha['estado_sensor'] . ' </td>
+
+                                    <td class="cell"> ' . $linha['nome_trem'] . ' </td>
+
+                                ';
+
+                                echo "<td><input class='cellHead Botao' type='submit' value='Editar' name='Editar$ValorSensor'></td>
+
+                                <td><input class='cellHead Botao' id='BotaoExcluir' type='submit' value='Excluir' name='Excluir$ValorSensor'></td>
+
+                                </tr>";
+                            }
+                        }
+
+                        ?>
+                    </tbody>
+                </table>
+
+            </form>
+
+        </section>
+
+
 
     </main>
     <footer>
