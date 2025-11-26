@@ -54,9 +54,13 @@ $contact_info = [
         <nav>
             <button class="menu-toggle" onclick="toggleMenu()">☰</button>
             <ul>
-                <li><a href="#objetivo">Objetivo</a></li>
-                <li><a href="#avaliacoes">Avaliações</a></li>
-                <li><a href="#contato">Contato</a></li>
+                <li><a href="pagina_inicial.php">Início</a></li>
+                <li><a href="perfil_condutor.php">Perfil</a></li>
+                <li><a href="gestao_rotas.php">Rotas</a></li>
+                <li><a href="dash_board_geral.php">Dashboard</a></li>
+                <li><a href="relatorio_analise.php">Relatórios</a></li>
+                <li><a href="central_apoio_condutor.php">Central de Apoio</a></li>
+                <li><input type="submit" name="BotaoSair" id="BotaoSair" value="Sair"></li>
             </ul>
         </nav>
     </header>
@@ -103,9 +107,9 @@ $contact_info = [
                 Trabalhamos incansavelmente para oferecer a melhor experiência de viagem possível.
             </p>
         </div>
-    </section
-        <!--=============================================================================================================-->
-
+</section>
+       
+ <!--=============================================================================================================-->
 
         <section id="avaliacoes">
         <div class="titulo-secao">
@@ -159,9 +163,9 @@ $contact_info = [
         <div class="footer-content">
             <p>
                 <i data-lucide="train" size="16" color="white"></i>
-                Train.Info Express
+                Train.Info 
             </p>
-            <p>© 2024 TransRail Express. Todos os direitos reservados.</p>
+            <p>© 2024 Train.Info. Todos os direitos reservados.</p>
         </div>
     </footer>
 

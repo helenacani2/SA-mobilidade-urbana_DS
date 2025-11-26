@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-$query_ids = "SELECT id_manutencao, resolvido_manutencao FROM manutencao WHERE resolvido_manutencao IN ('Não', 'Andamento')";
+$query_ids = "SELECT id_manutencao, resolvido_manutencao FROM manutencao WHERE resolvido_manutencao IN ('Não', 'Andamento', 'Sim')";
 
 $stmt_ids = $conn->prepare($query_ids);
 $stmt_ids->execute();
@@ -45,7 +45,7 @@ foreach ($registros_manutencao as $registro) {
     if ($status_atual === 'Não' && isset($_POST["BotaoIniciar$id_manutencao"])) {
 
         $DataAtual = date("Y-m-d H:i:s");
-        
+
         $sql = "UPDATE manutencao SET resolvido_manutencao='Andamento', data_termino_manutencao='$DataAtual' WHERE id_manutencao = $id_manutencao";
         $conn->query($sql);
         header("Location: " . $_SERVER['PHP_SELF']);
@@ -58,12 +58,20 @@ foreach ($registros_manutencao as $registro) {
         if (!$conn->query($sql)) {
 
             echo "Erro ao inserir: " . $conn->error;
-
         }
 
         header("Location: " . $_SERVER['PHP_SELF']);
         exit;
     }
+
+    if ($status_atual === 'Sim' && isset($_POST["BotaoExcluir$id_manutencao"])) {
+    $sql_delete = "DELETE FROM manutencao WHERE id_manutencao = $id_manutencao";
+    if (!$conn->query($sql_delete)) {
+        echo "Erro ao excluir: " . $conn->error;
+    }
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit;
+}
 }
 ?>
 
@@ -118,26 +126,6 @@ foreach ($registros_manutencao as $registro) {
 
     <section id="trens">
 
-        <!-- Cabeçalho principal -->
-        <div id="table1">
-            <div id="table2">
-                <h3>Trens</h3>
-            </div>
-            <div id="table3">
-                <h3>Status dos trens</h3>
-            </div>
-        </div>
-
-        <!-- Cabeçalhos das colunas -->
-        <div id="divbody">
-            <div id="table4">
-                <h2>Nome Trem</h2>
-            </div>
-            <div id="table5">
-                <h2>Status</h2>
-            </div>
-        </div>
-
         <!-- Linhas de dados dos trens -->
         <section id="NaoIniciado">
             <form method="POST">
@@ -156,7 +144,7 @@ foreach ($registros_manutencao as $registro) {
                             $contador = 0;
                             foreach ($manutencao_nao_iniciada as $trem) {
                                 echo '<div class="registro-manutencao">';
-                                echo '<h3>' . $trem['nome_trem'] . '</h3>';
+                                echo '<h3 class="Overflow">' . $trem['nome_trem'] . '</h3>';
                                 echo '</div>';
                                 if ($contador < $NumeroDeManutencao_NI - 1) echo '<hr>';
                                 $contador++;
@@ -177,21 +165,14 @@ foreach ($registros_manutencao as $registro) {
                             foreach ($manutencao_nao_iniciada as $trem) {
                                 $id_manutencao = $trem['id_manutencao'];
                                 echo '<div class="registro-manutencao">';
-                                echo '<h3>' . $trem['problema_manutencao'] . '</h3>';
+                                echo '<h3 class="Overflow">' . $trem['problema_manutencao'] . '</h3>';
 
                                 if (($_SESSION["cargo_funcionario"] == "Gerente") || ($_SESSION["cargo_funcionario"] == "Equipe_Manutencao")) {
 
-                                    echo "<input class='BotaoResolver' type='submit' name='BotaoIniciar$id_manutencao' value='Marcar como Fazendo'>";
-
+                                    echo "<input class='BotaoResolver' type='submit' name='BotaoIniciar$id_manutencao' value='Marcar como Fazendo' onclick='confirmarAcao()'>";
                                 }
 
                                 echo '</div>';
-
-                                /* if (($_SESSION["cargo_funcionario"] == "Gerente") || ($_SESSION["cargo_funcionario"] == "Equipe_Manutencao")) {
-                                    echo "<input type='submit' value='Marcar como Fazendo' name='BotaoIniciar$id_manutencao' class='botao-iniciar'>";
-                                    echo '<br>';
-                                    echo '</div>';
-                                } */
 
                                 if ($contador < $NumeroDeManutencao_NI - 1) echo '<hr>';
                                 $contador++;
@@ -223,7 +204,7 @@ foreach ($registros_manutencao as $registro) {
                             $contador = 0;
                             foreach ($manutencao_andamento as $trem) {
                                 echo '<div class="registro-manutencao">';
-                                echo '<h3>' . $trem['nome_trem'] . '</h3>';
+                                echo '<h3 class="Overflow">' . $trem['nome_trem'] . '</h3>';
                                 echo '</div>';
                                 if ($contador < $NumeroDeManutencao_Andamento - 1) echo '<hr>';
                                 $contador++;
@@ -243,20 +224,15 @@ foreach ($registros_manutencao as $registro) {
                             foreach ($manutencao_andamento as $trem) {
                                 $id_manutencao = $trem['id_manutencao'];
                                 echo '<div class="registro-manutencao">';
-                                echo '<h3>' . $trem['problema_manutencao'] . '</h3>';
+                                echo '<h3 class="Overflow">' . $trem['problema_manutencao'] . '</h3>';
 
                                 if (($_SESSION["cargo_funcionario"] == "Gerente") || ($_SESSION["cargo_funcionario"] == "Equipe_Manutencao")) {
 
-                                    echo "<input class='BotaoResolver' type='submit' name='BotaoFinalizar$id_manutencao' value='Marcar como Finalizado'>";
-
+                                    echo "<input class='BotaoResolver' type='submit' name='BotaoFinalizar$id_manutencao' value='Marcar como Finalizado' onclick='confirmarAcao()'>";
                                 }
 
                                 echo '</div>';
 
-                                /* if (($_SESSION["cargo_funcionario"] == "Gerente") || ($_SESSION["cargo_funcionario"] == "Equipe_Manutencao")) {
-                                    echo "<input type='submit' value='Marcar como Finalizado' name='BotaoFinalizar$id_manutencao' class='botao-finalizar'>";
-                                    echo '</div>';
-                                }*/
 
                                 if ($contador < $NumeroDeManutencao_Andamento - 1) {
                                     echo '<hr>';
@@ -273,11 +249,13 @@ foreach ($registros_manutencao as $registro) {
         </section>
 
         <section id="Finalizado">
+            <form method='POST'>
             <div id="divbody">
+                
                 <div id="table4">
                     <h2>Nome Trem</h2>
                     <?php
-                    $stmt = $conn->prepare("SELECT m.problema_manutencao, t.nome_trem FROM manutencao AS m INNER JOIN trens AS t ON trem_manutencao = id_trem WHERE m.resolvido_manutencao = 'Sim'");
+                    $stmt = $conn->prepare("SELECT m.id_manutencao, m.problema_manutencao, t.nome_trem FROM manutencao AS m INNER JOIN trens AS t ON trem_manutencao = id_trem WHERE m.resolvido_manutencao = 'Sim'");
                     $stmt->execute();
 
                     $resultado = $stmt->get_result();
@@ -289,15 +267,9 @@ foreach ($registros_manutencao as $registro) {
                         $contador = 0;
                         foreach ($manutencao_finalizada as $trem) {
                             echo '<div class="registro-manutencao">';
-                            echo '<h3>' . $trem['nome_trem'] . '</h3>';
+                            echo '<h3 class="Overflow">' . $trem['nome_trem'] . '</h3>';
 
-                            /* if (($_SESSION["cargo_funcionario"] == "Gerente") || ($_SESSION["cargo_funcionario"] == "Equipe_Manutencao")) {
-
-                                echo "<input class='BotaoResolver' type='submit' name='Excluir$id_manutencao' value='Excluir Registro'>";
-
-                            } */
-
-                                //Helena vai arrumar isso
+                            //Helena vai arrumar isso
 
                             echo '</div>';
                             if ($contador < $NumeroDeManutencao_Finalizada - 1) echo '<hr>';
@@ -317,7 +289,11 @@ foreach ($registros_manutencao as $registro) {
                         $contador = 0;
                         foreach ($manutencao_finalizada as $trem) {
                             echo '<div class="registro-manutencao">';
-                            echo '<h3>' . $trem['problema_manutencao'] . '</h3>';
+                            echo '<h3 class="Overflow">' . $trem['problema_manutencao'] . '</h3>';
+
+                            if (($_SESSION["cargo_funcionario"] == "Gerente") || ($_SESSION["cargo_funcionario"] == "Equipe_Manutencao")) {
+                                echo "<input class='BotaoResolver' type='submit' name='BotaoExcluir$id_manutencao' value='Excluir Registro' onclick='confirmarAcao()'>";
+                            }
 
                             echo '</div>';
                             if ($contador < $NumeroDeManutencao_Finalizada - 1) echo '<hr>';
@@ -329,8 +305,8 @@ foreach ($registros_manutencao as $registro) {
                     ?>
                 </div>
             </div>
+            </form>
         </section>
-
 
         <div id="table1">
             <div id="table2">
@@ -359,8 +335,6 @@ foreach ($registros_manutencao as $registro) {
             }
 
             ?>
-
-
 
             <br>
         </div>

@@ -18,25 +18,29 @@ header {
 hr {
     margin: 0;
     border: none;
-    border-top: 1px solid #ccc; /* Cor da linha */
+    border-top: 1px solid #ccc;
+    /* Cor da linha */
 }
 
 .registro-manutencao {
-    padding: 10px 0; 
-    min-height: 40px; 
+    padding: 10px 0;
+    min-height: 40px;
     display: flex;
     /* flex-direction: line;  */
-    justify-content: center; 
+    justify-content: center;
 }
 
 .registro-manutencao h3 {
     margin: 0;
     padding: 5px 0;
-    font-size: 1em; /* arrumar */
+    font-size: 1em;
+    /* arrumar */
 }
 
-.botao-iniciar, .botao-finalizar {
-    margin-top: 5px; /* Espaço entre o problema e o botão */
+.botao-iniciar,
+.botao-finalizar {
+    margin-top: 5px;
+    /* Espaço entre o problema e o botão */
     padding: 5px 10px;
     border-style: solid;
     border-width: 1px;
@@ -49,6 +53,7 @@ hr {
     align-items: center;
     align-self: center;
     align-content: center;
+    cursor: pointer;
 }
 
 #table1 {
@@ -93,12 +98,15 @@ hr {
 }
 
 #table4 {
-    width: 30%;
     text-align: center;
     justify-content: center;
     color: #828282;
     border-bottom: 1px solid #828282;
     font-family: 'Times New Roman', Times, serif;
+    width: 30%;
+    text-align: center;
+    text-transform: uppercase;
+    cursor: pointer;
 }
 
 #table4 h2 {
@@ -212,7 +220,7 @@ footer {
     margin: 3px;
     text-decoration: none;
     color: black;
-    
+
     font-family: 'Times New Roman', Times, serif;
 }
 
@@ -330,20 +338,20 @@ label.menu-icon {
 @media (min-width: 668px) {
 
     #table1_centro {
-    width: 100%;
-    display: flex;
-    font-family: 'Times New Roman', Times, serif;
-    align-items: center;
-    align-content: center;
-    justify-content: center;
+        width: 100%;
+        display: flex;
+        font-family: 'Times New Roman', Times, serif;
+        align-items: center;
+        align-content: center;
+        justify-content: center;
     }
 
     #table2_centro {
-    width: 30%;
-    text-align: center;
-    justify-content: center;
-    align-self: center;
-    font-family: 'Times New Roman', Times, serif;
+        width: 30%;
+        text-align: center;
+        justify-content: center;
+        align-self: center;
+        font-family: 'Times New Roman', Times, serif;
     }
 
     #white_centro {
@@ -353,7 +361,7 @@ label.menu-icon {
         justify-content: center;
 
         justify-content: space-between;
-        
+
         padding-left: 300px;
 
         padding-right: 300px;
@@ -379,15 +387,15 @@ label.menu-icon {
 @media (max-width: 667px) {
 
     #table1_centro {
-    width: 100%;
-    display: flex;
-    font-family: 'Times New Roman', Times, serif;
+        width: 100%;
+        display: flex;
+        font-family: 'Times New Roman', Times, serif;
     }
 
     #table2_centro {
-    width: 30%;
-    text-align: center;
-    font-family: 'Times New Roman', Times, serif;
+        width: 30%;
+        text-align: center;
+        font-family: 'Times New Roman', Times, serif;
     }
 
     #white_centro {
@@ -450,6 +458,7 @@ label.menu-icon {
     }
 
 }
+
 #alertas_tempo {
 
     animation: alertas_tempo_aparece 2s ease-in-out;
@@ -535,7 +544,7 @@ body {
 
 .Texto {
 
-    border-style:solid;
+    border-style: solid;
 
     border-width: 1px;
 
@@ -553,7 +562,7 @@ body {
 
 #TremData {
 
-    border-style:solid;
+    border-style: solid;
 
     border-width: 1px;
 
@@ -572,7 +581,7 @@ body {
 
 #BotaoEnviar {
 
-    border-style:solid;
+    border-style: solid;
 
     border-width: 1px;
 
@@ -590,7 +599,7 @@ body {
 
 @media (max-width: 950px) {
 
-    #BotaoEnviar{
+    #BotaoEnviar {
 
         width: 13%;
 
@@ -676,7 +685,7 @@ label.menu-icon {
     opacity: 100%;
     width: 100%;
 
-    border-style:solid;
+    border-style: solid;
 
     border-width: 1px;
 
@@ -693,5 +702,11 @@ label.menu-icon {
     margin-left: 1%;
 
     max-width: 160px;
+    cursor: pointer;
+}
+
+.Overflow {
+
+    overflow-wrap: break-word;
 
 }
