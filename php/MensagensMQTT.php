@@ -1,28 +1,54 @@
 <?php
 require("phpMQTT.php");
 
-$server = "91dca013ea7f4009b7046724c1f7717f.s1.eu.hivemq.cloud";
-$port = 8883;
+require 'env.php';
+
+
+loadEnv(__DIR__ . '/.env');
+
+$host = getenv('BROKER_URL');
+$port = getenv('BROKER_PORT');
+$user = getenv('BROKER_USER');
+$pass = getenv('BROKER_PASS');                              
+
 $topic = "TopicoTeste";
 $client_id = "phpmqtt-" . rand();
 
-$username = "";
-$password = "";
+$cafile = __DIR__ . "/cacert.pem";
+$message = "";
 
-header('Content-Type: application/json');
 
-$messages = [];
 
-$mqtt = new TrainInfo\Conecta($server, $port, $client_id);
-if (!$mqtt->connect(true, NULL, $username, $password)) {
-    echo json_encode(["error" => "Não foi possível conectar ao broker"]);
+
+
+
+
+
+
+
+
+
+
+$mqtt = new Bluerhinos\phpMQTT($host, $port, $client_id);
+
+$mqtt->cafile = $cafile;
+
+if (!$mqtt->connect(true, NULL, $user, $pass)) {
+    echo "Não foi possível conectar ao broker";
     exit;
 }
 
 // Subscribing e coletando mensagens por 1-2 segundos
-$mqtt->subscribe([$topic => ["qos" => 0, "function" => function ($topic, $msg) use (&$messages) {
-    $messages[] = ["topic" => $topic, "msg" => $msg, "time" => date("H:i:s")];
-}]], 0);
+$mqtt->subscribe([
+    $topic => [
+        "qos" => 0,
+        "function" => function ($topic, $msg) use (&$message) {
+            if (!empty($msg)) {
+                $message = $msg;
+            }
+        }
+    ]
+], 0);
 
 $start = time();
 while (time() - $start < 2) { // escuta 2 segundos
@@ -31,6 +57,6 @@ while (time() - $start < 2) { // escuta 2 segundos
 
 $mqtt->close();
 
-echo json_encode($messages);
+echo $message;  
 
 ?>
