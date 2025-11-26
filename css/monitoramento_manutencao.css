@@ -53,6 +53,7 @@ hr {
     align-items: center;
     align-self: center;
     align-content: center;
+    cursor: pointer;
 }
 
 #table1 {
@@ -701,7 +702,7 @@ label.menu-icon {
     margin-left: 1%;
 
     max-width: 160px;
-
+    cursor: pointer;
 }
 
 .Overflow {

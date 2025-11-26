@@ -42,3 +42,13 @@ function Finalizado() {
     document.getElementById("Fazendo").style.display = "none";
     document.getElementById("NaoIniciado").style.display = "none";
 }
+
+function confirmarAcao() {
+  var resposta = confirm("Tem certeza que deseja realizar essa ação?");
+
+  if (resposta == true) {
+    alert("Ação realizada com sucesso!");
+  } else {
+    alert("Ação cancelada.");
+  }
+}
