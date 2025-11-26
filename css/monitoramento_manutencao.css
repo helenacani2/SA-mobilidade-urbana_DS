@@ -696,3 +696,9 @@ label.menu-icon {
     max-width: 160px;
     cursor: pointer;
 }
+
+.Overflow {
+
+    overflow-wrap: break-word;
+
+}

@@ -126,26 +126,6 @@ foreach ($registros_manutencao as $registro) {
 
     <section id="trens">
 
-        <!-- Cabeçalho principal -->
-        <div id="table1">
-            <div id="table2">
-                <h3>Trens</h3>
-            </div>
-            <div id="table3">
-                <h3>Status dos trens</h3>
-            </div>
-        </div>
-
-        <!-- Cabeçalhos das colunas -->
-        <div id="divbody">
-            <div id="table4">
-                <h2>Nome Trem</h2>
-            </div>
-            <div id="table5">
-                <h2>Status</h2>
-            </div>
-        </div>
-
         <!-- Linhas de dados dos trens -->
         <section id="NaoIniciado">
             <form method="POST">
@@ -164,7 +144,7 @@ foreach ($registros_manutencao as $registro) {
                             $contador = 0;
                             foreach ($manutencao_nao_iniciada as $trem) {
                                 echo '<div class="registro-manutencao">';
-                                echo '<h3>' . $trem['nome_trem'] . '</h3>';
+                                echo '<h3 class="Overflow">' . $trem['nome_trem'] . '</h3>';
                                 echo '</div>';
                                 if ($contador < $NumeroDeManutencao_NI - 1) echo '<hr>';
                                 $contador++;
@@ -185,7 +165,7 @@ foreach ($registros_manutencao as $registro) {
                             foreach ($manutencao_nao_iniciada as $trem) {
                                 $id_manutencao = $trem['id_manutencao'];
                                 echo '<div class="registro-manutencao">';
-                                echo '<h3>' . $trem['problema_manutencao'] . '</h3>';
+                                echo '<h3 class="Overflow">' . $trem['problema_manutencao'] . '</h3>';
 
                                 if (($_SESSION["cargo_funcionario"] == "Gerente") || ($_SESSION["cargo_funcionario"] == "Equipe_Manutencao")) {
 
@@ -224,7 +204,7 @@ foreach ($registros_manutencao as $registro) {
                             $contador = 0;
                             foreach ($manutencao_andamento as $trem) {
                                 echo '<div class="registro-manutencao">';
-                                echo '<h3>' . $trem['nome_trem'] . '</h3>';
+                                echo '<h3 class="Overflow">' . $trem['nome_trem'] . '</h3>';
                                 echo '</div>';
                                 if ($contador < $NumeroDeManutencao_Andamento - 1) echo '<hr>';
                                 $contador++;
@@ -244,7 +224,7 @@ foreach ($registros_manutencao as $registro) {
                             foreach ($manutencao_andamento as $trem) {
                                 $id_manutencao = $trem['id_manutencao'];
                                 echo '<div class="registro-manutencao">';
-                                echo '<h3>' . $trem['problema_manutencao'] . '</h3>';
+                                echo '<h3 class="Overflow">' . $trem['problema_manutencao'] . '</h3>';
 
                                 if (($_SESSION["cargo_funcionario"] == "Gerente") || ($_SESSION["cargo_funcionario"] == "Equipe_Manutencao")) {
 
@@ -287,7 +267,7 @@ foreach ($registros_manutencao as $registro) {
                         $contador = 0;
                         foreach ($manutencao_finalizada as $trem) {
                             echo '<div class="registro-manutencao">';
-                            echo '<h3>' . $trem['nome_trem'] . '</h3>';
+                            echo '<h3 class="Overflow">' . $trem['nome_trem'] . '</h3>';
 
                             //Helena vai arrumar isso
 
@@ -309,7 +289,7 @@ foreach ($registros_manutencao as $registro) {
                         $contador = 0;
                         foreach ($manutencao_finalizada as $trem) {
                             echo '<div class="registro-manutencao">';
-                            echo '<h3>' . $trem['problema_manutencao'] . '</h3>';
+                            echo '<h3 class="Overflow">' . $trem['problema_manutencao'] . '</h3>';
 
                             if (($_SESSION["cargo_funcionario"] == "Gerente") || ($_SESSION["cargo_funcionario"] == "Equipe_Manutencao")) {
                                 echo "<input class='BotaoResolver' type='submit' name='BotaoExcluir$id_manutencao' value='Excluir Registro' onclick='confirmarAcao()'>";
