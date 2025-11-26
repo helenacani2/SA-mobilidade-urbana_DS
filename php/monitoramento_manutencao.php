@@ -43,7 +43,10 @@ foreach ($registros_manutencao as $registro) {
 
     // de não para andamento
     if ($status_atual === 'Não' && isset($_POST["BotaoIniciar$id_manutencao"])) {
-        $sql = "UPDATE manutencao SET resolvido_manutencao='Andamento' WHERE id_manutencao = $id_manutencao";
+
+        $DataAtual = date("Y-m-d H:i:s");
+        
+        $sql = "UPDATE manutencao SET resolvido_manutencao='Andamento', data_termino_manutencao='$DataAtual' WHERE id_manutencao = $id_manutencao";
         $conn->query($sql);
         header("Location: " . $_SERVER['PHP_SELF']);
         exit;
