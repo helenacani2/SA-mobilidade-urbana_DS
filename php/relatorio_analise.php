@@ -200,9 +200,58 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if (isset($_POST["Excluir$Contador"])) {
 
-            echo "<script>alert('Exlusão de $Contador')</script>";
+
+
+            echo '
+           
+            <div class="PopUp">
+           
+                <form method="POST" class="PopUpConteudo">
+
+                    <h1>Deseja mesmo deletar ' . $linhaSensores['nome_sensor'] . '? Isso não poderá ser desfeito<h1>
+
+                    <br>
+
+                    <input class="BotaoDeletar" type="submit" name="Excluir" value="Excluir">
+                    <input class="BotaoDeletar" type="submit" name="CancelarExclusao" value="Cancelar">
+
+                </form>
+
+            </div>
+            
+            
+           ';
+
+
+
 
         }
+
+
+        if(isset($_POST["Excluir"])) {
+
+            $sql = "DELETE FROM sensores WHERE id_sensor='$Contador'";
+            $conn->query($sql);
+
+            $_POST["Excluir$Contador"] = NULL;
+            $_POST["Excluir"] = NULL;
+
+            header("Location: relatorio_analise.php");
+
+        }
+
+
+        if(isset($_POST["CancelarExclusao"])) {
+
+            $_POST["Excluir$Contador"] = NULL;
+            $_POST["Excluir"] = NULL;
+
+            header("Location: relatorio_analise.php");
+
+        }
+
+
+
     }
 }
 
