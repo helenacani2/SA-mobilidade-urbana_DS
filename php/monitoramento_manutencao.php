@@ -266,6 +266,7 @@ foreach ($registros_manutencao as $registro) {
                     if (!empty($manutencao_finalizada)) {
                         $contador = 0;
                         foreach ($manutencao_finalizada as $trem) {
+                            $id_manutencao = $trem['id_manutencao'];
                             echo '<div class="registro-manutencao">';
                             echo '<h3 class="Overflow">' . $trem['nome_trem'] . '</h3>';
 
@@ -288,6 +289,7 @@ foreach ($registros_manutencao as $registro) {
                     if (!empty($manutencao_finalizada)) {
                         $contador = 0;
                         foreach ($manutencao_finalizada as $trem) {
+                            $id_manutencao = $trem['id_manutencao'];
                             echo '<div class="registro-manutencao">';
                             echo '<h3 class="Overflow">' . $trem['problema_manutencao'] . '</h3>';
 
