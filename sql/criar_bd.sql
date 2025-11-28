@@ -27,7 +27,7 @@ CREATE TABLE sensores (
     tipo_sensor VARCHAR(45) NOT NULL,
     estado_sensor BOOLEAN NOT NULL,
     trem_sensor INT,
-    FOREIGN KEY (trem_sensor) REFERENCES trens(id_trem),
+    FOREIGN KEY (trem_sensor) REFERENCES trens(id_trem)
 
 );
 
