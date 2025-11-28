@@ -42,13 +42,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <div class="barra_alinhar">
 
-            <div id="SobreNosBotao">
-                
-                <a href="sobre_nos.php" class="SobreNos">? Sobre ?</a>
-                <a href="sobre_nos.php" class="SobreNos">? Nós ?</a>
-
-            </div>
-
             <img id="logo" src="../midias/logotraininfo.png">
 
         </div>
@@ -211,6 +204,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 </body>
 
-<script src="../javascript/pagina_inicial.js?v=<?php echo time(); ?>"></script>
+<footer>
+  <p>Train.info - Uma empresa do futuro.</p>
+  <nav>
+    <ul>
+      <li><a href="sobre_nos.php">Saiba Sobre Nós!</a></li>
+    </ul>
+  </nav>
+</footer>
 
+<script src="../javascript/pagina_inicial.js?v=<?php echo time(); ?>"></script>
 </html>
