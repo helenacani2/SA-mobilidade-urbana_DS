@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
            
            <div class="PopUp">
            
-                <form method="POST">
+                <form method="POST" class="PopUpConteudo">
 
                 <table>
 
@@ -72,8 +72,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <th class="cellHead">Nome</th>
 
                             <th class="cellHead">Tipo</th>
-
-                            <th class="cellHead">Estado</th>
 
                             <th class="cellHead">Trem</th>
 
@@ -95,19 +93,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                                 <tr>
 
-                                    <td class='cell'> ' . $linha[id_sensor] . ' </td>
+                                    <td class='cell'>$linha[id_sensor]</td>
 
-                                    <td class='cell'> ' . $linha[nome_sensor] . ' </td>
+                                    <td class='cell'><input type='text' name='EditarNome$linha[id_sensor]' class='TextoEditar'></td>
 
-                                    <td class='cell'> ' . $linha[tipo_sensor] . ' </td>
+                                    <td class='cell'><input type='text' name='EditarTipo$linha[id_sensor]' class='TextoEditar'></td>
 
-                                    <td class='cell'> ' . $linha[estado_sensor] . ' </td>
+                                    <td class='cell'>
+                                    
+                                        <select name='EditarTrem$linha[id_sensor]' class='SelectEditar'>";
+                                        
+                                        
+                                        $sql = "SELECT * FROM trens";
+                                        $ResultadoTrens = $conn->query($sql);
 
-                                    <td class='cell'> ' . $linha[nome_trem] . ' </td>
+                                        if ($ResultadoTrens && $ResultadoTrens->num_rows >= 1) {
 
-                                <td><input class='cellHead Botao' type='submit' value='Editar' name='Editar$ValorSensor'></td>
+                                            $Trens = $ResultadoTrens->fetch_all(MYSQLI_ASSOC);
 
-                                </tr>";
+                                        }
+
+                                            foreach ($Trens as $linhaTrens) {
+
+                                                echo "<option>" . $linhaTrens['nome_trem'] . "</option>";
+
+                                            }
+
+
+
+                                        echo "</select>
+                                    
+                                    </td>
+
+                                </tr>
+                                
+                                <input class='Botao' type='submit' value='Editar' name='EditarFinal$ValorSensor'>
+
+                                <input class='Botao' type='submit' value='Cancelar' name='CancelarEdicao'>
+
+                                ";
                             }
                         }
 
@@ -127,15 +151,57 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $_POST["Editar$Contador"] = NULL;
 
-            //header("Location: relatorio_analise.php");
+            
 
         }
 
 
 
+        if(isset($_POST["EditarFinal$Contador"])) {
+
+            $NovoNome = $_POST["EditarNome$Contador"];
+            $NovoTipo = $_POST["EditarTipo$Contador"];
+
+            $TremSelecionado = $_POST["EditarTrem$Contador"];
+
+
+
+            $sql = "SELECT * FROM trens WHERE nome_trem='$TremSelecionado'";
+            $ResultadoTrens = $conn->query($sql);
+
+            if ($ResultadoTrens && $ResultadoTrens->num_rows >= 1) {
+
+                $TremEscolhido = $ResultadoTrens->fetch_assoc();
+
+            }
+
+            $NovoTrem = $TremEscolhido["id_trem"];
+
+            
+            
+
+            $sql = "UPDATE sensores SET nome_sensor='$NovoNome', tipo_sensor='$NovoTipo', trem_sensor='$NovoTrem' WHERE id_sensor = $Contador";
+            $conn->query($sql);
+
+            header("Location: relatorio_analise.php");
+
+        }
+
+        if(isset($_POST["CancelarEdicao"])) {
+
+            $_POST["Editar$Contador"] = NULL;
+
+            header("Location: relatorio_analise.php");
+
+        }
+
+
+
+
         if (isset($_POST["Excluir$Contador"])) {
 
-            echo "<script>alert('Exlusão')</script>";
+            echo "<script>alert('Exlusão de $Contador')</script>";
+
         }
     }
 }
