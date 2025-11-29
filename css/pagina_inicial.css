@@ -512,3 +512,81 @@ body {
         transform: translateY(0);
     }
 }
+
+#LogoFooter {
+
+        height: 100px;
+        width: auto;
+
+        margin-left: -4%;
+
+        border-radius: 20px;
+
+    }
+
+
+    #SobreNosFooter {
+
+        background-color: #214863;
+
+        padding-bottom: 1%;
+        padding-top: 1%;
+
+        display: flex;
+
+        justify-content: space-around;
+
+        color: whitesmoke;
+
+        align-items: center;
+
+    }
+
+
+    #SobreNosBotao {
+
+        color: white;
+        
+        text-decoration: none;
+
+        border-style: dotted;
+        border-width: 2px;
+        border-color: #20445c;
+
+        height: 10%;
+
+    }
+
+    #SobreNosBotao:hover {
+
+        color: black;
+
+        border-style: dotted;
+        border-width: 2px;
+        border-color: #0099ff;
+
+    }
+
+
+    .TextosFooter {
+
+        font-size: 150%;
+
+    }
+
+
+    .TextosGits {
+
+        text-decoration: none;
+
+        color: whitesmoke;
+
+    }
+
+    .TextosGits:hover {
+
+        text-decoration: none;
+
+        color: rgb(189, 189, 189);
+
+    }

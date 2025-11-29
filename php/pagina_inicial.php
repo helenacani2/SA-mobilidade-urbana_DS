@@ -204,13 +204,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 </body>
 
-<footer>
-  <p>Train.info - Uma empresa do futuro.</p>
-  <nav>
-    <ul>
-      <li><a href="sobre_nos.php">Saiba Sobre Nós!</a></li>
-    </ul>
-  </nav>
+<footer id="SobreNosFooter">
+
+    <img id="LogoFooter" src="../midias/logomenor.png">
+
+    <p style="font-style: italic" class="TextosFooter">"Train.info - Uma empresa do futuro."</p>
+
+    <a class="TextosFooter" id="SobreNosBotao" href="sobre_nos.php">Saiba Sobre Nós!</a>
+
+    <nav>
+
+        <ul>
+
+            <p>Nossos GitHubs:</p>
+
+            <li><a class="TextosGits" href="https://github.com/andreerfr">André</a></li>
+            <li><a class="TextosGits" href="https://github.com/helenacani2">Helena</a></li>
+            <li><a class="TextosGits" href="https://github.com/Iago-KK">Iago</a></li>
+            <li><a class="TextosGits" href="https://github.com/RafaelFr4nklin">Rafael</a></li>
+
+        </ul>
+
+    </nav>
+
 </footer>
 
 <script src="../javascript/pagina_inicial.js?v=<?php echo time(); ?>"></script>
