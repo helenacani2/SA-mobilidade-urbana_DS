@@ -1,6 +1,6 @@
-# Situação de Aprendizagem - Projeto Train.Info
+# 🚆 Situação de Aprendizagem - Projeto Train.Info
 
-### Contexto do projeto:
+### 📖 Contexto do projeto:
 
 Durante o ano de 2025, o terceiro ano do ensino médio da Escola SESI de Referência foi desafiada a montar e implementar um site de monitoramento e suporte para uma empresa de trens. Assim surgiu o Train.Info, um site projetado e desenvolvido pelos seguintes desenvolvedores:
 
@@ -16,7 +16,7 @@ Com todas essas necessidades, tivemos um repositório vasto e bem estruturado, o
 
 ---
 
-### Objetivo do projeto:
+### 🎯 Objetivo do projeto:
 
 > O objetivo principal do projeto Train.Info foi desenvolver e implementar um site abrangente de monitoramento e suporte para uma empresa de trens, como parte de um desafio proposto à turma de Desenvolvimento de Sistemas 24M6 da Escola SESI de Referência, durante o ano de 2025.<br>
 <br>
@@ -35,7 +35,7 @@ Em resumo, o projeto visou criar uma solução completa para avaliar os conhecim
 
 ---
 
-### Funcionalidades Principais:
+### ⚙️ Funcionalidades Principais:
 
 Gerenciamento Completo de Dados (CRUD): Permite criar, visualizar, atualizar e excluir informações essenciais como trens, rotas, usuários, viagens, sensores, notificações e mais.
 
@@ -47,13 +47,13 @@ Integração com Hardware: Suporte para conexão com módulos ESP32, permitindo 
 
 ---
 
-### Licença
+### ⚖️ Licença
 
 A Licença MIT permite o uso, cópia, modificação, união, publicação, distribuição, sublicenciamento e/ou venda de cópias do software, sujeito apenas à inclusão do aviso de direitos autorais e da própria licença em todas as cópias ou partes substanciais do software.
 
 ---
 
-### Estrutura do Repositório:
+### 📁 Estrutura do Repositório:
 
 SA-mobilidade-urbana_DS/<br>
 ├── .vscode/<br>
@@ -70,7 +70,7 @@ SA-mobilidade-urbana_DS/<br>
 
 ---
 
-### Tecnologias Utilizadas:
+### 💻 Tecnologias Utilizadas:
 
 Front-end:	HTML5, CSS3, JavaScript
 <br>
@@ -100,7 +100,7 @@ Versionamento:	Git, GitHub
 
 ---
 
-### Autores:
+### 👥 Autores:
 
 <table style="width: 100%; text-align: center;">
   <tr>
@@ -132,7 +132,7 @@ Versionamento:	Git, GitHub
 
 --- 
 
-### Informações Complementares:
+### 🛠️ Informações Complementares:
 
 > Para configurar e instalar o projeto, siga esse passo a passo:
 
